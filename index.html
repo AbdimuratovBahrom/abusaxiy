@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Store Path Finder</title>
+  <link rel="shortcut icon" href="https://via.placeholder.com/32?text=AS" type="image/x-icon"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <!-- Можно добавить свои фоновые картинки позже -->
+</head>
+<body>
+  <div class="header">
+    <div class="language-selector">
+      <select id="languageSelect">
+        <option value="ru">Русский</option>
+        <option value="uz">O‘zbekcha (Lotin)</option>
+        <option value="uz_cyrl">Ўзбекча (Кирилл)</option>
+      </select>
+    </div>
+    <div class="toggle-btn">
+      <button id="toggle-btn" type="button">Скрыть блоки</button>
+    </div>
+  </div>
+
+  <div id="blocks-container">
+    <div class="container">
+      <h1>Поиск линий электроснабжения магазинов</h1>
+
+      <select id="block">
+        <option value="">Выберите блок</option>
+        <option value="1-блок">1-блок</option>
+        <option value="2-блок">2-блок</option>
+        <option value="3-блок">3-блок</option>
+        <option value="38-склад">38-склад</option>
+        <option value="Гипермаркет">Гипермаркет</option>
+        <option value="Специфические объекты">Специфические объекты</option>
+      </select>
+
+      <select id="row" disabled>
+        <option value="">Выберите ряд</option>
+      </select>
+
+      <select id="store" disabled>
+        <option value="">Выберите магазин</option>
+      </select>
+
+      <div id="pathResult"></div>
+
+      <div class="case">
+        <a target="_blank" href="https://find-stores-by-shr.onrender.com/">Блоки 1,2,3</a>
+        <a target="_blank" href="https://abdimuratovbahrom.github.io/gipermarket_stores/">Гипермаркет</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>
