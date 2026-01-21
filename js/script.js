@@ -481,13 +481,18 @@ const DATA = {
         'path': 'ТП-6699 > Т1 > 2-блок шитовой > Шит-2 > 2-блок > Ряд S > ШО-2 > ШО-4',
         'shops': ['17', '18', '19', '20']
     },
+
+     {
+        'path': 'ТП-6699 > Т1 > 2-блок шитовой > Шит-2 > 2-блок > Ряд S > ШО-3 ',
+        'shops': ['1', '2', '3', '4']
+    },
     
     {
         'path': 'ТП-6699 > Т1 > 2-блок шитовой > Шит-2 > 2-блок > Ряд S > ШО-1',
         'shops': ['5', '6', '7', '8']
     },
     {
-        'path': 'ТП-6699 > Т1 > 2-блок шитовой > Шит-2 > 2-блок > Ряд S > ШО-1 > ШО-3',
+        'path': 'ТП-6699 > Т1 > 2-блок шитовой > Шит-2 > 2-блок > Ряд S > ШО-1 > ШО-5',
         'shops': ['13', '14', '15', '16']
     },
     // Ряд R
@@ -542,7 +547,7 @@ const DATA = {
     },
     // Ряд J
      {
-        'path': 'ТП-6699 > Т1 > 2-блок шитовой > Шит-3 > 2-блок > Ряд J > Ряд G >  ШО-1(G/J)',
+        'path': 'ТП-6699 > Т1 > 2-блок шитовой > Шит-3 > 2-блок > Ряд J > РЩ-G1 > ШО-1(G/J)',
         'shops': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
     },
     {
@@ -608,12 +613,12 @@ const DATA = {
     paths: [
       // Ряд 1
         {
-            'path': 'ТП-4768 > Т2 > АВР(ЩР11) > 3-блок > 3 блок ЩРхона > ЩР11 > Ряд 1 > ШО-7',
+            'path': 'ТП-4768 > Т2 > АВР(ЩР8) > 3-блок > 3 блок ЩРхона > ЩР8 > Ряд 1 > ШО-7',
             'shops': ['1', '2', '53', '54', '1А', '1Б', '1В']
         },
       
         {
-            'path': 'ТП-4768 > Т2 > АВР(ЩР12) > 3-блок > Сантехникхона > ЩР12 > Ряд 1 > ШО-21',
+            'path': 'ТП-4768 > Т1 > АВР(ЩР12) > 3-блок > 3 блок ЩРхона > ЩР12 > Ряд 1 > ШО-21',
             'shops': ['3', '4', '51', '52', '1Д',]
         },
         {
@@ -1085,7 +1090,11 @@ blockSelect.addEventListener("change", function() {
   rowSelect.disabled = rows.size === 0;
 });
 
-// Обработка изменения ряда
+
+
+
+
+// Обработка изменения ряда — ТОЧНОЕ совпадение "Ряд X"
 rowSelect.addEventListener("change", function() {
   const block = blockSelect.value;
   const row = this.value?.trim();
@@ -1093,21 +1102,26 @@ rowSelect.addEventListener("change", function() {
   storeSelect.innerHTML = `<option value="">${translations[currentLang].selectStore}</option>`;
   storeSelect.disabled = true;
 
-  if (!row) return;
+  if (!row || row === "— без рядов —") return;
 
   const shops = new Set();
+
   (DATA[block]?.paths || []).forEach(item => {
-    if (item.path.includes(`Ряд ${row}`)) {
+    // Точная проверка: "Ряд X" где X — ровно выбранный ряд (граница слова)
+    const rowRegex = new RegExp(`Ряд\\s+${escapeRegExp(row)}\\b`, 'i');
+    
+    if (rowRegex.test(item.path)) {
       item.shops.forEach(s => {
         if (s && s.trim()) shops.add(s.trim());
       });
     }
   });
 
+  // Сортировка (цифры первыми, потом строки)
   const sortedShops = [...shops].sort((a, b) => {
-    const na = parseFloat(a) || 999999;
-    const nb = parseFloat(b) || 999999;
-    return na !== nb ? na - nb : a.localeCompare(b);
+    const na = parseFloat(a) || 999999999;
+    const nb = parseFloat(b) || 999999999;
+    return na !== nb ? na - nb : a.localeCompare(b, 'ru');
   });
 
   sortedShops.forEach(s => {
@@ -1120,7 +1134,17 @@ rowSelect.addEventListener("change", function() {
   storeSelect.disabled = sortedShops.length === 0;
 });
 
-// Показ пути при выборе магазина (обновлённая версия — выводит конкретный магазин/объект в конце каждого пути)
+// Вспомогательная функция для экранирования спецсимволов в regex
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+
+
+
+
+
+// Показ пути при выборе магазина — ТОЧНОЕ совпадение ряда
 storeSelect.addEventListener("change", function() {
     const shop = this.value?.trim();
     if (!shop) return;
@@ -1130,17 +1154,19 @@ storeSelect.addEventListener("change", function() {
 
     const blockPaths = DATA[block]?.paths || [];
 
-    // Находим все записи, где есть этот магазин/объект
+    // Находим все пути, где есть этот магазин
     let matches = blockPaths.filter(item =>
         item.shops.some(s => s.trim() === shop)
     );
 
-    // Для обычных блоков (с рядами) — дополнительно фильтруем по выбранному ряду
+    // Для блоков с рядами — ТОЧНОЕ совпадение "Ряд X" (не частичное!)
     if (row && row !== "" && row !== "— без рядов —" &&
         !["Гипермаркет", "Специфические объекты"].includes(block)) {
-        matches = matches.filter(item =>
-            item.path.includes(`Ряд ${row}`)
-        );
+        
+        // Используем регулярку для точного совпадения: "Ряд " + row + " " или ">"
+        const rowRegex = new RegExp(`Ряд\\s+${row}\\b`, 'i');
+        
+        matches = matches.filter(item => rowRegex.test(item.path));
     }
 
     if (matches.length === 0) {
@@ -1148,14 +1174,11 @@ storeSelect.addEventListener("change", function() {
         return;
     }
 
-    // Формируем вывод: путь + конкретный магазин/объект в конце
+    // Формируем вывод: путь + магазин в конце
     const output = matches.map(item => {
-        // Находим точное совпадение магазина (учитывая регистр/пробелы)
         const matchingShop = item.shops.find(s => s.trim() === shop) || shop;
-
         let displayPath = item.path.trim();
 
-        // Добавляем магазин в конец, если его там ещё нет
         if (!displayPath.endsWith(matchingShop)) {
             displayPath += ` > ${matchingShop}`;
         }
@@ -1167,125 +1190,3 @@ storeSelect.addEventListener("change", function() {
 });
 // Инициализация
 updateLanguage();
-
-// ================================================
-// ПОИСК — 100% РАБОЧАЯ ВЕРСИЯ (ТОЧНО ИСПРАВЛЕНО)
-// ================================================
-
-function normalizeQuery(q) {
-  return q.trim().toLowerCase().replace(/[^a-zа-я0-9\s-]/gi, ' ');
-}
-
-function performSearch() {
-  let rawQuery = searchInput.value.trim();
-  if (!rawQuery) {
-    searchResults.innerHTML = '<span style="color:#666;">Примеры: 1-f-56 | 3-1-50 | 2-p-78 | г-269 | туалет</span>';
-    return;
-  }
-
-  const query = normalizeQuery(rawQuery);
-  const hasG = /г|g/i.test(rawQuery); // Есть ли Г/g/G
-
-  searchResults.innerHTML = '<div>Поиск: <strong>' + rawQuery + '</strong>...</div><br>';
-
-  const results = [];
-
-  // 1. Если есть Г/g/G → ТОЛЬКО Гипермаркет + поиск по номеру магазина
-  if (hasG && DATA["Гипермаркет"]?.paths) {
-    const digits = rawQuery.match(/\d+/g)?.join('') || '';
-
-    DATA["Гипермаркет"].paths.forEach(item => {
-      item.shops.forEach(shop => {
-        const s = shop.trim();
-        const sLower = s.toLowerCase();
-
-        // Если в запросе цифры — ищем их + наличие g/г
-        if (digits && s.includes(digits) && (sLower.includes('g') || sLower.startsWith('g'))) {
-          let path = item.path.trim();
-          if (!path.endsWith(s)) path += ` > ${s}`;
-          results.push(`<strong>${path}</strong> (Гипермаркет)`);
-        }
-      });
-    });
-  }
-
-  // 2. Поиск по 1,2,3 блокам (если НЕ было Г/g)
-  if (!hasG) {
-    // Парсим запрос: первая цифра — блок, первая буква — ряд, последние цифры — магазин
-    const parts = rawQuery.split(/[\s,-;]+/).filter(p => p.trim());
-
-    let blockNum = null;
-    let rowLetter = null;
-    let shopNum = null;
-
-    parts.forEach(p => {
-      if (/^\d+$/.test(p)) {
-        if (!blockNum) blockNum = p; // первая цифра — блок
-        else shopNum = p; // все последующие цифры — магазин
-      } else if (/^[a-zа-я]$/i.test(p)) {
-        rowLetter = p.toUpperCase(); // буква — ряд
-      }
-    });
-
-    if (blockNum) {
-      const targetBlock = `${blockNum}-блок`.toLowerCase();
-
-      Object.entries(DATA).forEach(([blockName, data]) => {
-        if (blockName.toLowerCase().includes(targetBlock) && data.paths) {
-          data.paths.forEach(item => {
-            const pathLower = item.path.toLowerCase();
-
-            // Проверка ряда (если указан)
-            const hasRow = rowLetter ? pathLower.includes(`ряд ${rowLetter.toLowerCase()}`) : true;
-
-            // Проверка магазина — строгое совпадение номера
-            const hasShop = shopNum ? item.shops.some(s => s.trim() === shopNum) : true;
-
-            if (hasRow && hasShop) {
-              const shopDisplay = shopNum || (item.shops.length > 0 ? item.shops[0] : '?');
-              let path = item.path.trim();
-              if (!path.endsWith(shopDisplay)) path += ` > ${shopDisplay}`;
-              results.push(`<strong>${path}</strong> (${blockName})`);
-            }
-          });
-        }
-      });
-    }
-  }
-
-  // 3. Поиск по ключевым словам (если ничего не нашли)
-  if (results.length === 0) {
-    Object.entries(DATA).forEach(([blockName, blockData]) => {
-      if (!blockData.paths) return;
-
-      blockData.paths.forEach(item => {
-        item.shops.forEach(shop => {
-          const s = shop.toLowerCase();
-          if (s.includes(query) || item.path.toLowerCase().includes(query)) {
-            let path = item.path.trim();
-            if (!path.endsWith(shop)) path += ` > ${shop}`;
-            results.push(`<strong>${path}</strong> (${blockName})`);
-          }
-        });
-      });
-    });
-  }
-
-  // Вывод результатов
-  if (results.length === 0) {
-    searchResults.innerHTML += `<span style="color:#e53e3e;">Ничего не найдено по запросу "${rawQuery}"</span><br>
-      <small>Попробуйте: 1-f-56 | 3-1-50 | 2-p-78 | г-269 | туалет</small>`;
-  } else {
-    searchResults.innerHTML += results.join('<br><br>');
-  }
-}
-
-// Запуск поиска
-document.querySelector('.search-form button')?.addEventListener('click', performSearch);
-
-searchInput.addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    performSearch();
-  }
-});

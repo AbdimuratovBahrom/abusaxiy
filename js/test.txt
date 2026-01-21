@@ -1,79 +1,144 @@
-        {
-           'path': 'ТП-7694 > Т1 > АРВ-сомсахона > ЩР-сомсахона',
-
-            'shops': ['Сомсахона-1', 'Сомсахона-2', 'Сомсахона-3', 'Гош дукон', 'Милиция']
-        },
-         
-
-        {
-            'path': 'ТП-7694  > Т1 > АВР > ЩР > 1-блок > Ряд O > ШР-сомсохона > ШО-1-ошхона > 1-ошхона(1-линия)',
-
-            'shops': ['1-ошхона(1-линия)']
-        },
-        {
-            'path': 'ТП-6699 > Т2 > ВРУ3 > ЩР3 > 1-блок > Ряд O > ШО-1-ошхона > 1-ошхона(2-линия)',
-            'shops': ['1-ошхона(2-линия)']
-        },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > Офис',
-            'shops': ['Офис']
-        },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > ШО-1-блок > 1-блок освищение',
-            'shops': ['1-блок освищение']
-        },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > ШО-режим > Режим хонаси',
-            'shops': ['Режим хонаси']
-        },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > Офис-дизель шит (1-линия) > ШО-7пост > ШО-освищение 2-блока > 2-блок освищение',
-            'shops': ['2-блок освищение']
-        },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд F > Блогер хонаси',
-            'shops': ['Блогер хонаси']
-        },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд M > 3-пост',
-            'shops': ['3-пост']
-        },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд F > 4-пост',
-            'shops': ['4-пост']
-        },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд F > 4a-пост контейнер',
-
-            'shops': ['4a-пост контейнерлар','4b-пост контейнерлар']
-
-        },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд A > пожарний сигнализасия',
-            'shops': ['пожарний сигнализасия']
-        },
-        
-        {
-            'path': 'ТП-4768 > Т1 > АВР(ЩР18) > ЩР-Vip > Ряд V > ШО-Реклама > Реклама и Фарошлархонаси',
-            'shops': ['Реклама и Фарошлархонаси']
-        },
-        {
-            'path': 'ТП-4768 > Т1 > АВР(ЩР18) > ЩР-Vip > Ряд V > ШО-Реклама > 6a-пост',
-            'shops': ['6a-пост']
-        },
-        {
-            'path': 'ТП-4768 > Т1 > АВР(ЩР18) > ЩР-Vip > Ряд V > АСКУЭ V-катор сигнал сим',
-            'shops': ['АСКУЭ V-катор сигнал сим']
-        },
-        {
-            'path': 'ТП-4768 > Т1 > АВР(ЩР18) > ЩР-Vip > 1-блок > Ряд L > Печенье цех-3-пост',
-            'shops': ['Печенье цех-3-пост']
-        },
-        {
-            'path': 'ТП-4768 > Т1 > АВР(ЩР5) > 1-блок > Ряд R > ШО-R3',
-            'shops': ['освещение ряда Q и V']
-
-        },
 
 
- background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover no-repeat fixed;
+
+<div class="search-form" style="margin-top: 20px;">
+ <input type="text" id="searchInput" placeholder="Примеры: 1-a-6 | 2 p 25 | г 52 | офис | туалет">
+  <datalist id="suggestions"></datalist>
+  <button type="button" onclick="performSearch()">🔍 Найти</button>
+</div>
+<div id="searchResults" style="margin-top: 15px; padding: 15px; background: #f0fff4; border-left: 5px solid #10b981; border-radius: 8px; min-height: 60px;"></div>
+
+
+
+
+
+
+
+
+
+// ================================================
+// ПОИСК — 100% РАБОЧАЯ ВЕРСИЯ (ТОЧНО ИСПРАВЛЕНО)
+// ================================================
+
+function normalizeQuery(q) {
+  return q.trim().toLowerCase().replace(/[^a-zа-я0-9\s-]/gi, ' ');
+}
+
+function performSearch() {
+  let rawQuery = searchInput.value.trim();
+  if (!rawQuery) {
+    searchResults.innerHTML = '<span style="color:#666;">Примеры: 1-f-56 | 3-1-50 | 2-p-78 | г-269 | туалет</span>';
+    return;
+  }
+
+  const query = normalizeQuery(rawQuery);
+  const hasG = /г|g/i.test(rawQuery); // Есть ли Г/g/G
+
+  searchResults.innerHTML = '<div>Поиск: <strong>' + rawQuery + '</strong>...</div><br>';
+
+  const results = [];
+
+  // 1. Если есть Г/g/G → ТОЛЬКО Гипермаркет + поиск по номеру магазина
+  if (hasG && DATA["Гипермаркет"]?.paths) {
+    const digits = rawQuery.match(/\d+/g)?.join('') || '';
+
+    DATA["Гипермаркет"].paths.forEach(item => {
+      item.shops.forEach(shop => {
+        const s = shop.trim();
+        const sLower = s.toLowerCase();
+
+        // Если в запросе цифры — ищем их + наличие g/г
+        if (digits && s.includes(digits) && (sLower.includes('g') || sLower.startsWith('g'))) {
+          let path = item.path.trim();
+          if (!path.endsWith(s)) path += ` > ${s}`;
+          results.push(`<strong>${path}</strong> (Гипермаркет)`);
+        }
+      });
+    });
+  }
+
+  // 2. Поиск по 1,2,3 блокам (если НЕ было Г/g)
+  if (!hasG) {
+    // Парсим запрос: первая цифра — блок, первая буква — ряд, последние цифры — магазин
+    const parts = rawQuery.split(/[\s,-;]+/).filter(p => p.trim());
+
+    let blockNum = null;
+    let rowLetter = null;
+    let shopNum = null;
+
+    parts.forEach(p => {
+      if (/^\d+$/.test(p)) {
+        if (!blockNum) blockNum = p; // первая цифра — блок
+        else shopNum = p; // все последующие цифры — магазин
+      } else if (/^[a-zа-я]$/i.test(p)) {
+        rowLetter = p.toUpperCase(); // буква — ряд
+      }
+    });
+
+    if (blockNum) {
+      const targetBlock = `${blockNum}-блок`.toLowerCase();
+
+      Object.entries(DATA).forEach(([blockName, data]) => {
+        if (blockName.toLowerCase().includes(targetBlock) && data.paths) {
+          data.paths.forEach(item => {
+            const pathLower = item.path.toLowerCase();
+
+            // Проверка ряда (если указан)
+            const hasRow = rowLetter ? pathLower.includes(`ряд ${rowLetter.toLowerCase()}`) : true;
+
+            // Проверка магазина — строгое совпадение номера
+            const hasShop = shopNum ? item.shops.some(s => s.trim() === shopNum) : true;
+
+            if (hasRow && hasShop) {
+              const shopDisplay = shopNum || (item.shops.length > 0 ? item.shops[0] : '?');
+              let path = item.path.trim();
+              if (!path.endsWith(shopDisplay)) path += ` > ${shopDisplay}`;
+              results.push(`<strong>${path}</strong> (${blockName})`);
+            }
+          });
+        }
+      });
+    }
+  }
+
+  // 3. Поиск по ключевым словам (если ничего не нашли)
+  if (results.length === 0) {
+    Object.entries(DATA).forEach(([blockName, blockData]) => {
+      if (!blockData.paths) return;
+
+      blockData.paths.forEach(item => {
+        item.shops.forEach(shop => {
+          const s = shop.toLowerCase();
+          if (s.includes(query) || item.path.toLowerCase().includes(query)) {
+            let path = item.path.trim();
+            if (!path.endsWith(shop)) path += ` > ${shop}`;
+            results.push(`<strong>${path}</strong> (${blockName})`);
+          }
+        });
+      });
+    });
+  }
+
+  // Вывод результатов
+  if (results.length === 0) {
+    searchResults.innerHTML += `<span style="color:#e53e3e;">Ничего не найдено по запросу "${rawQuery}"</span><br>
+      <small>Попробуйте: 1-f-56 | 3-1-50 | 2-p-78 | г-269 | туалет</small>`;
+  } else {
+    searchResults.innerHTML += results.join('<br><br>');
+  }
+}
+
+// Запуск поиска
+document.querySelector('.search-form button')?.addEventListener('click', performSearch);
+
+searchInput.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    performSearch();
+  }
+});
+
+
+
+
+
