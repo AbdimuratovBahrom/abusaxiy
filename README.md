@@ -7,7 +7,7 @@
 <img src="https://img.shields.io/badge/Status-Рабочий-зелёный?style=for-the-badge&logo=vercel&logoColor=white" alt="Status"/>
 <img src="https://img.shields.io/badge/Технологии-HTML%20CSS%20JavaScript-blue?style=for-the-badge&logo=javascript&logoColor=yellow" alt="Tech"/>
 <img src="https://img.shields.io/badge/Хостинг-GitHub%20Pages-181717?style=for-the-badge&logo=github" alt="Hosting"/>
-<img src="https://img.shields.io/badge/Языки-Русский%20·%20Ўзбекча%20(кириллица)-ffcc00?style=for-the-badge" alt="Languages"/>
+<img src="https://img.shields.io/badge/Языки-Русский_·_Ўзбекча_(кириллица_&_лотин)-ffcc00?style=for-the-badge" alt="Languages"/>
 
 **Быстрый и удобный поиск электрических линий питания магазинов в ТЦ «Абу Сахий»**
 
@@ -45,7 +45,7 @@
 
 ## Особенности
 
-- Поддержка **русского** и **узбекского (кириллица и лотинецы)**
+- Поддержка **русского** и **узбекского (кириллица_&_лотин)**
 - Мобильная адаптивность
 - Быстрая загрузка (статический сайт)
 - Хостинг на GitHub Pages (бесплатно и надёжно)
@@ -96,6 +96,7 @@ const DATA = {
 Полный текст лицензии находится в файле [LICENSE](LICENSE).
 
 Copyright (c) 2026 Bahrom Abdimuratov.  bahrom9791@gmail.com
+
 Подробности: https://opensource.org/licenses/MIT
 
 
