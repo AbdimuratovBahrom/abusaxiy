@@ -51,6 +51,12 @@
       </div>
     </div>
   </div>
+  <div class="search-form" style="margin-top: 20px;">
+ <input type="text" id="searchInput" placeholder="Примеры: 1-a-6 | 2 p 25 | г 52 | офис | туалет">
+  <datalist id="suggestions"></datalist>
+  <button type="button" onclick="performSearch()">🔍 Найти</button>
+</div>
+<div id="searchResults" style="margin-top: 15px; padding: 15px; background: #f0fff4; border-left: 5px solid #10b981; border-radius: 8px; min-height: 60px;"></div>
 
   <script src="./js/script.js"></script>
 </body>

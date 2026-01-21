@@ -5,3 +5,10 @@ git commit -m "add up grade"
 
 
 git push origin main
+
+
+
+
+
+
+git pull origin main

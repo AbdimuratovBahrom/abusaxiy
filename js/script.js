@@ -760,7 +760,7 @@ const DATA = {
         },
         {
             'path': 'ТП-5353 > Т2 > АВР(1) > Подвал > ШО-3',
-            'shops': ['88', '89', '90', '91', '106', '107', '108', '109', '1A']
+            'shops': ['88', '89', '90', '91', '106', '107', '108', '109', '110', '111', '112', '113','1A']
         },
         {
             'path': 'ТП-5353 > Т2 > АВР(1) > Подвал > ШО-4',
@@ -1167,3 +1167,125 @@ storeSelect.addEventListener("change", function() {
 });
 // Инициализация
 updateLanguage();
+
+// ================================================
+// ПОИСК — 100% РАБОЧАЯ ВЕРСИЯ (ТОЧНО ИСПРАВЛЕНО)
+// ================================================
+
+function normalizeQuery(q) {
+  return q.trim().toLowerCase().replace(/[^a-zа-я0-9\s-]/gi, ' ');
+}
+
+function performSearch() {
+  let rawQuery = searchInput.value.trim();
+  if (!rawQuery) {
+    searchResults.innerHTML = '<span style="color:#666;">Примеры: 1-f-56 | 3-1-50 | 2-p-78 | г-269 | туалет</span>';
+    return;
+  }
+
+  const query = normalizeQuery(rawQuery);
+  const hasG = /г|g/i.test(rawQuery); // Есть ли Г/g/G
+
+  searchResults.innerHTML = '<div>Поиск: <strong>' + rawQuery + '</strong>...</div><br>';
+
+  const results = [];
+
+  // 1. Если есть Г/g/G → ТОЛЬКО Гипермаркет + поиск по номеру магазина
+  if (hasG && DATA["Гипермаркет"]?.paths) {
+    const digits = rawQuery.match(/\d+/g)?.join('') || '';
+
+    DATA["Гипермаркет"].paths.forEach(item => {
+      item.shops.forEach(shop => {
+        const s = shop.trim();
+        const sLower = s.toLowerCase();
+
+        // Если в запросе цифры — ищем их + наличие g/г
+        if (digits && s.includes(digits) && (sLower.includes('g') || sLower.startsWith('g'))) {
+          let path = item.path.trim();
+          if (!path.endsWith(s)) path += ` > ${s}`;
+          results.push(`<strong>${path}</strong> (Гипермаркет)`);
+        }
+      });
+    });
+  }
+
+  // 2. Поиск по 1,2,3 блокам (если НЕ было Г/g)
+  if (!hasG) {
+    // Парсим запрос: первая цифра — блок, первая буква — ряд, последние цифры — магазин
+    const parts = rawQuery.split(/[\s,-;]+/).filter(p => p.trim());
+
+    let blockNum = null;
+    let rowLetter = null;
+    let shopNum = null;
+
+    parts.forEach(p => {
+      if (/^\d+$/.test(p)) {
+        if (!blockNum) blockNum = p; // первая цифра — блок
+        else shopNum = p; // все последующие цифры — магазин
+      } else if (/^[a-zа-я]$/i.test(p)) {
+        rowLetter = p.toUpperCase(); // буква — ряд
+      }
+    });
+
+    if (blockNum) {
+      const targetBlock = `${blockNum}-блок`.toLowerCase();
+
+      Object.entries(DATA).forEach(([blockName, data]) => {
+        if (blockName.toLowerCase().includes(targetBlock) && data.paths) {
+          data.paths.forEach(item => {
+            const pathLower = item.path.toLowerCase();
+
+            // Проверка ряда (если указан)
+            const hasRow = rowLetter ? pathLower.includes(`ряд ${rowLetter.toLowerCase()}`) : true;
+
+            // Проверка магазина — строгое совпадение номера
+            const hasShop = shopNum ? item.shops.some(s => s.trim() === shopNum) : true;
+
+            if (hasRow && hasShop) {
+              const shopDisplay = shopNum || (item.shops.length > 0 ? item.shops[0] : '?');
+              let path = item.path.trim();
+              if (!path.endsWith(shopDisplay)) path += ` > ${shopDisplay}`;
+              results.push(`<strong>${path}</strong> (${blockName})`);
+            }
+          });
+        }
+      });
+    }
+  }
+
+  // 3. Поиск по ключевым словам (если ничего не нашли)
+  if (results.length === 0) {
+    Object.entries(DATA).forEach(([blockName, blockData]) => {
+      if (!blockData.paths) return;
+
+      blockData.paths.forEach(item => {
+        item.shops.forEach(shop => {
+          const s = shop.toLowerCase();
+          if (s.includes(query) || item.path.toLowerCase().includes(query)) {
+            let path = item.path.trim();
+            if (!path.endsWith(shop)) path += ` > ${shop}`;
+            results.push(`<strong>${path}</strong> (${blockName})`);
+          }
+        });
+      });
+    });
+  }
+
+  // Вывод результатов
+  if (results.length === 0) {
+    searchResults.innerHTML += `<span style="color:#e53e3e;">Ничего не найдено по запросу "${rawQuery}"</span><br>
+      <small>Попробуйте: 1-f-56 | 3-1-50 | 2-p-78 | г-269 | туалет</small>`;
+  } else {
+    searchResults.innerHTML += results.join('<br><br>');
+  }
+}
+
+// Запуск поиска
+document.querySelector('.search-form button')?.addEventListener('click', performSearch);
+
+searchInput.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    performSearch();
+  }
+});

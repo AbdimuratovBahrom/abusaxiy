@@ -95,3 +95,7 @@ select:not(.language-selector select) {
   .container { margin: 90px 10px 30px; padding: 24px 18px; }
   h1 { font-size: 1.45rem; }
 }
+.search-form {
+  display: flex;
+  gap: 10px;
+}
