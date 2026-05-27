@@ -378,17 +378,17 @@ const DATA = {
         },
 
         {
-            'path': 'ТП-6699 > Т1 > ВРУ4 > ЩР2 > 1-блок > Ряд D > ЯРВ7(D) > ШО-18',
+            'path': 'ТП-6699 > Т1 > ВРУ4 > ЩР2 > 1-блок > Ряд D > ЯРВ7(D) > ШО-D50',
             'shops': ['43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56']
         },
 
         {
-            'path': 'ТП-6699 > Т1 > ВРУ4 > ЩР2 > 1-блок > Ряд D > ЯРВ7(D) > ШО-16',
+            'path': 'ТП-6699 > Т1 > ВРУ4 > ЩР2 > 1-блок > Ряд D > ЯРВ7(D) > ШО-D63',
             'shops': ['57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69']
         },
 
         {
-            'path': 'ТП-6699 > Т1 > ВРУ4 > ЩР2 > 1-блок > Ряд D > ЯРВ7(D) > ШО-14',
+            'path': 'ТП-6699 > Т1 > ВРУ4 > ЩР2 > 1-блок > Ряд D > ЯРВ7(D) > ШО-D76',
             'shops': ['70', '71', '72', '73', '74', '75', '76', '77', '78', '79', '80', '81', '82', '83']
         },
 
@@ -416,11 +416,11 @@ const DATA = {
         // Ряд Q
         {
             'path': 'ТП-6699 > Т1 > ВРУ7 > ЯРВ3(П) > 1-блок > Ряд Q > ШО-35(П)',
-            'shops': [ '005', '1', '3']
+            'shops': [ '005','1' ]
         },
         {
-            'path': 'ТП-6699 > Т1 > ВРУ7 > 1-блок > Ряд L > ШО-L22 > ШО-Q7a(карниз)',
-            'shops': ['1', '3',  '7', '7a', '8']
+            'path': 'ТП-6699 > Т1 > ВРУ7 > 1-блок > Ряд Q > ШО-L22 > ШО-Q7a(карниз) > ШО-Q7',
+            'shops': ['3',  '7', '7a', '8']
         },
         {
             'path': 'ТП-6699 > Т1 > ВРУ7 > ЯРВ3(П) > 1-блок > Ряд Q > ШО-35(П) > ШО-36',
@@ -793,7 +793,7 @@ const DATA = {
         },
         {
             'path': 'ТП-5353 > Т2 > АВР(1) > Подвал > ШО-3',
-            'shops': ['88', '89', '90', '91', '106', '107', '108', '109', '110', '111', '112', '113','1A']
+            'shops': ['88', '89', '90', '91', '106', '107', '108', '109', '110', '111', '112', '113','1A','1B','1V']
         },
         {
             'path': 'ТП-5353 > Т2 > АВР(1) > Подвал > ШО-4',
@@ -894,12 +894,14 @@ const DATA = {
       { path: 'ТП-6699 > Т2 > ВРУ3 > ЩР3 > 1-блок > Ряд O > ШО-1-ошхона > 1-ошхона(2-линия)', shops: ['1-ошхона(2-линия)'] },
       { path: 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > Офис', shops: ['Офис'] },
       { path: 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > ШО-1-блок освищение > 1-блок освищение', shops: ['1-блок освищение'] },
-      { path: 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > ШО-1-блок освищение > ШО-режим > Режим хонаси', shops: ['Режим хонаси'] },
-      { path: 'ТП-6699 > Т1 > ВРУ3 > ЯРВ3(Л) > 1-блок > Ряд Q > ШО-35(Л)', shops: [ '1-блок туалет + тахоратхона', '5-пост', 'осв-е 1-блок туалет атрофи '] },     
+      { path: 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > ШО-1-блок освищение > ШО-режим ', shops: ['Режим хонаси', '5-пост'] },
+      { path: 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > ШО-1-блок освищение > ШО-35(Л)', shops: [ '1-блок туалет + тахоратхона', 'осв-е 1-блок туалет атрофи '] },     
       { path: 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд F > Блогер хонаси', shops: ['Блогер хонаси'] },
       { path: 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд M > 3-пост', shops: ['3-пост'] },
-      { path: 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд F > 4-пост', shops: ['4-пост'] },
-      { path: 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд F > 4a-пост контейнерлар', shops: ['4a-пост контейнерлар','4b-пост контейнерлар'] },
+      { path: 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд A > 4-пост', shops: ['4-пост'] },
+      { path: 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд A > 4a-пост контейнерлар', shops: ['4a-пост контейнерлар'] },
+       { path: 'ТП-4768 > Т1 > АВР(ЩР18) > Ряд V > ЩР-Vip' , shops: ['4b-пост контейнерлар'] },
+
       { path: 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд A > пожарний сигнализасия', shops: ['пожарний сигнализасия'] },
       { path: 'ТП-4768 > Т2 > АВР(ЩР19) > ЩР-Vip(ёни) > Чёрный автомат > Ряд V > ШО-Реклама/Фарошлар ', shops: [' Козим Реклама', 'Фарошлар Офис','6a-пост'] },
       { path: 'ТП-4768 > Т1 > АВР(ЩР18) > ЩР-Vip > Ряд V > АСКУЭ V-катор сигнал сим', shops: ['АСКУЭ V-катор сигнал сим'] },
@@ -919,7 +921,8 @@ const DATA = {
       // Специфические из 3-блока
       { path: 'ТП-4768 > Т2 > АВР(ЩР11) > 3-блок > Ряд 1 > 3 блок ЩРхона > ЩР11 > ШО-сантех', shops: ['3-блок туалет', 'сантехникхона', 'катёл', 'вытежка'] },
       { path: 'ТП-4768 > Т1 > АВР(ЩР6) > 3-блок > ШО-ZARIN', shops: ['Маг-ZARIN'] },
-      { path: 'ТП-4768 > Т2 > АВР(ЩР11) > 3-блок > 3 блок ЩРхона > ЩР11 > Ряд 1 > ЩР-Нодир шит > ШО-тунель калитка ', shops: ['Остановка кафе-1'] },
+      { path: 'ТП-4768 > Т2 > АВР(ЩР11) > 3-блок > 3 блок ЩРхона > ЩР11 > Ряд 1 > ЩР-Нодир шит > ШО-тунель калитка шит ', shops: ['Остановка кафе-1'] },
+      { path: 'ТП-4768 > Т2 > АВР(ЩР11) > 3-блок > 3 блок ЩРхона > ЩР11 > Ряд 1 > ЩР-Нодир шит > ШО-тунель калитка шит > Остановка кафе-1 шит', shops: ['Остановка кафе-2'] },
       { path: 'ТП-4768 > Т2 > АВР(ЩР7) > 3-блок > Ряд 1 > ШО-29', shops: ['Титаник шлагбаун кириш', 'Титаник шлагбаун кириш пост','12b-пост','12-пост банкаматы'] },
       { path: 'ТП-4768 > Т2 > АВР(ЩР11) > 3-блок > 3 блок ЩРхона > ЩР11 > Ряд 3 > ШО-20', shops: ['освещение 3-блока:(магазин 3-57 ёнида)'] },
       { path: 'ТП-4768 > Т2 > АВР(ЩР17) > 3-блок > Кабинет электриков > ЩР17 ', shops: ['Разетка в кабинете электриков '] },
@@ -932,7 +935,7 @@ const DATA = {
 
         { path: 'ТП-5353 > Т2 > АВР(Печенье цех-14-пост) ', shops: ['Печенье цех-14-пост'] },
 
-        { path: 'ТП-5353 > Т1 > АВР(39 пост) > ШО-39 пост', shops: ['39 пост','Pynet бутка'] },
+        { path: 'ТП-5353 > Т1 > АВР(39 пост) > ШО-39 пост', shops: ['39 пост','Pynet бутка 39 пост'] },
 
         { 
             'path':'ТП-5353 > Т2 > Шит-M-39(2)счетчик > ШО-Стоянка M-39(2)',
@@ -975,21 +978,18 @@ const DATA = {
             'shops': ['Тунель','Тунель Фарошлархонаси']
         },
         {
-            'path':'ТП-5353 > Т1 > Шит-Al-Sahiy счетчик > ШО-Al-Sahiy',
-            'shops': ['Al-Sahiy кафе']
+            'path':'ТП-5353 > Т1 > Шит-Al-Sahiy счетчик > ШО-Baraka',
+            'shops': ['Baraka кафе']
         },
         {
-            'path':'ТП-5353 > Т2 > Шит-Risq счетчик > ШО-Risq',
-            'shops': ['Risq кафе']
+            'path':'ТП-5353 > Т2 > Шит-Risq счетчик > ШО-MrDonar',
+            'shops': ['MrDonar кафе']
         },
         {
             'path':'ТП-5353 > Т2 > Шит-Капалак счетчик > ШО-Капалак',
             'shops': ['Капалак кафе']
         },
-        {
-            'path':'ТП-5353 > Т1 > Шит-Остановка счетчик > ШО-Остановка-2',
-            'shops': ['Остановка кафе-2']
-        },
+        
 
         {
         'path': 'ТП-7694 > Т1 > АРВ-сомсахона > ЩР-сомсахона',
@@ -1225,3 +1225,435 @@ storeSelect.addEventListener("change", function() {
 });
 // Инициализация
 updateLanguage();
+
+
+// === ИИ ЧАТ ===
+const chatContainer = document.getElementById("chatContainer");
+const aiInput = document.getElementById("aiInput");
+const aiSendBtn = document.getElementById("aiSendBtn");
+
+// ── Нормализация: кириллица ↔ латиница (для сравнения кодов магазинов) ──────
+// а=a, б=b, в=v, г=g, д=d, е=e, ж=zh, з=z, и=i, й=j, к=k, л=l, м=m,
+// н=n, о=o, п=p, р=r, с=s, т=t, у=u, ф=f, х=x, ц=ts, ч=ch, ш=sh
+const CYR_MAP = {
+  'а':'a',          // а = a
+  'б':'b',
+  'в':'v',
+  'г':'g',
+  'д':'d',
+  'е':'e','ё':'e',
+  'ж':'j',          // ж = j
+  'з':'z',
+  'и':'i',
+  'й':'y',          // й = y
+  'к':'k',
+  'л':'l',
+  'м':'m',
+  'н':'n',
+  'о':'o',          // о = o
+  'п':'p',
+  'р':'r',
+  'с':'s',          // с = s
+  'т':'t',          // т = t
+  'у':'u',          // у = u
+  'ф':'f',
+  'х':'h',          // х = h
+  'ц':'ts',
+  'ч':'ch',
+  'ш':'sh','щ':'sch',
+  'ъ':'','ы':'y','ь':'','э':'e','ю':'yu','я':'ya'
+};
+function normalizeId(s) {
+  return String(s).toLowerCase()
+    .replace(/[а-яёъьы]/g, ch => CYR_MAP[ch] !== undefined ? CYR_MAP[ch] : ch)
+    .replace(/qu|q/g, 'k')   // q = ку → k
+    .replace(/[-–\s]+/g, '-');
+}
+
+// ── Умный локальный поиск ──────────────────────────────────────────────────
+function performLocalSearch(question) {
+  const q = question.toLowerCase();
+  const results = [];
+
+  // Нормализуем кириллицу → латиница (визуально похожие буквы)
+  const cyrToLat = { 'А':'A','В':'B','С':'C','Е':'E','Н':'H','К':'K','М':'M','О':'O','Р':'R','Т':'T','Х':'X' };
+  const normLat  = s => s.toUpperCase().replace(/[А-ЯЁ]/g, ch => cyrToLat[ch] || ch);
+
+  // ── Компактный формат: 1-F-100, 2-S-15, 3-6-18 ───────────────────────────
+  let compactBlock = null, compactRow = null, compactShop = null;
+  const compact = question.match(/^[^\d]*(\d)\s*[-–]\s*([A-Za-zА-ЯЁ0-9]+)\s*[-–]\s*(\d+)/);
+  if (compact) {
+    const blockMap = { '1':'1-блок', '2':'2-блок', '3':'3-блок' };
+    compactBlock = blockMap[compact[1]];
+    compactRow   = normLat(compact[2]);
+    compactShop  = compact[3];
+  }
+
+  // Определяем блок(и)
+  let targetBlocks = [];
+  if (compactBlock) {
+    targetBlocks.push(compactBlock);
+  } else {
+    if (/1\s*[-–—]?\s*(го\s*)?блок|1\s*block/i.test(q)) targetBlocks.push('1-блок');
+    if (/2\s*[-–—]?\s*(го\s*)?блок|2\s*block/i.test(q)) targetBlocks.push('2-блок');
+    if (/3\s*[-–—]?\s*(го\s*)?блок|3\s*block/i.test(q)) targetBlocks.push('3-блок');
+    if (/гипермаркет|гипер/i.test(q))                    targetBlocks.push('Гипермаркет');
+    if (/специфич/i.test(q))                              targetBlocks.push('Специфические объекты');
+    if (targetBlocks.length === 0) targetBlocks = Object.keys(DATA);
+  }
+
+  // Нормализуем кириллицу → латиница (визуально похожие буквы)
+  // Определяем ряд
+  let targetRow = compactRow || null;
+
+  if (!targetRow) {
+    // Формат "ряд A 26", "ряда ж 88", "ряду E" — буква ПОСЛЕ слова "ряд"
+    const rowAfter = question.match(/[Рр]яд[а-яё]?\s+([A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё0-9]*)/);
+    if (rowAfter) {
+      targetRow = normalizeId(rowAfter[1]).replace(/-/g, '').toUpperCase();
+    }
+  }
+
+  if (!targetRow) {
+    // Формат "г ряд 26", "j ряд 5" — буква ПЕРЕД словом "ряд"
+    // Используем (?:^|[^...]) вместо \b, т.к. \b не работает с кириллицей
+    const rowBefore = question.match(/(?:^|[^A-Za-zА-ЯЁа-яё\d])([A-Za-zА-ЯЁа-яё])\s+[Рр]яд/i);
+    if (rowBefore) {
+      targetRow = normalizeId(rowBefore[1]).replace(/-/g, '').toUpperCase();
+    }
+  }
+
+  if (!targetRow) {
+    // Формат "R 108", "ж-18", "S 18" — одиночная буква + число (без слова "ряд")
+    const shortForm = question.match(/(?:^|[^A-Za-zА-ЯЁа-яё\d])([A-Za-zА-ЯЁа-яё])\s*[-–]?\s*(\d+)\b/);
+    if (shortForm) {
+      const letter = normalizeId(shortForm[1]).replace(/-/g, '').toUpperCase();
+      if (/^[A-Z0-9]{1,2}$/.test(letter)) targetRow = letter;
+    }
+  }
+
+  // Извлекаем кандидатов-магазинов (числа)
+  let shopCandidates;
+  if (compactShop) {
+    shopCandidates = [compactShop];
+  } else {
+    const cleanQ = question.replace(/\d+\s*[-–—]?\s*(го|й|ый|ой)\s*(блок|block)/gi, '');
+    shopCandidates = [...cleanQ.matchAll(/\b(\d+[а-яёa-zA-Z0-9]*)\b/g)].map(m => m[1]);
+    if (targetBlocks.length < Object.keys(DATA).length) {
+      shopCandidates = shopCandidates.filter(s => !/^[123]$/.test(s));
+    }
+  }
+
+  // Строим поисковую фразу: убираем только блок/ряд/служебные слова
+  const stopRx = /\b(где|найди|путь|блок|ряд|магазин|включить|отключить|питание|подключен|показ|как|что|такое|это|в|на|для|к|и|или)\b/gi;
+  const searchPhrase = q
+    .replace(/\d+\s*[-–—]?\s*(го|й|ый|ой)?\s*(блок|block)/gi, '')
+    .replace(stopRx, '')
+    .replace(/\s+/g, ' ').trim();
+
+  // Резервные слова — сохраняем короткие коды вроде "6a", "4b"
+  const fallbackWords = searchPhrase.split(/[\s]+/)
+    .filter(w => {
+      const clean = w.replace(/[-–]/g, '');
+      return clean.length > 2 || /^\d/i.test(clean); // коды типа "6a" оставляем
+    });
+
+  const hasTextSearch = searchPhrase.length > 1;
+
+  // Если есть текстовый поиск — добавляем "Специфические объекты" к поиску
+  const blocksToSearch = [...targetBlocks];
+  if (hasTextSearch && !blocksToSearch.includes('Специфические объекты')) {
+    blocksToSearch.push('Специфические объекты');
+  }
+
+  for (const blockName of blocksToSearch) {
+    const blockData = DATA[blockName];
+    if (!blockData?.paths) continue;
+
+    for (const item of blockData.paths) {
+      // Фильтр по ряду — targetRow уже нормализован в латиницу
+      if (targetRow) {
+        // Разбиваем путь на сегменты и ищем "Ряд X" среди них
+        const rowTarget = normalizeId(targetRow).replace(/-/g, ''); // "g", "j", "11" и т.д.
+        const segments  = item.path.split(' > ');
+        const hasRow = segments.some(seg => {
+          const n = normalizeId(seg).replace(/-/g, ''); // "ryad" + letter
+          return n === 'ryad' + rowTarget || n.startsWith('ryad' + rowTarget);
+        });
+        if (!hasRow) continue;
+      }
+
+      // Совпадение по номеру магазина — с нормализацией кир↔лат
+      let shopMatch = false;
+      if (shopCandidates.length === 0 && !hasTextSearch) {
+        shopMatch = true; // нет критериев — берём всё в ряду
+      } else if (shopCandidates.length > 0) {
+        shopMatch = shopCandidates.some(num =>
+          item.shops.some(s => normalizeId(s) === normalizeId(num))
+        );
+      }
+
+      // Совпадение по текстовой фразе — с нормализацией кир↔лат
+      if (!shopMatch && hasTextSearch) {
+        const phraseNorm = normalizeId(searchPhrase);
+        const shopsNorm  = item.shops.map(s => normalizeId(s));
+        const pathNorm   = normalizeId(item.path);
+
+        // 1. Полная нормализованная фраза
+        shopMatch = shopsNorm.some(s => s.includes(phraseNorm)) ||
+                    pathNorm.includes(phraseNorm);
+
+        // 2. Все ключевые слова присутствуют в одном магазине или в пути
+        if (!shopMatch && fallbackWords.length > 0) {
+          const wordsNorm = fallbackWords.map(normalizeId);
+          shopMatch = shopsNorm.some(s => wordsNorm.every(w => s.includes(w))) ||
+                      wordsNorm.every(w => pathNorm.includes(w));
+        }
+      }
+
+      if (shopMatch) {
+        results.push({ block: blockName, path: item.path, shops: item.shops });
+        if (results.length >= 15) return results;
+      }
+    }
+  }
+  return results;
+}
+
+// ── Визуализация пути ─────────────────────────────────────────────────────
+function getChipType(part) {
+  if (/^ТП-/i.test(part))             return 'tp';
+  if (/^(Т1|Т2)$/i.test(part))        return 'transformer';
+  if (/^ВРУ/i.test(part))             return 'vru';
+  if (/^ЩР|^[Шш]ит/i.test(part))     return 'shr';
+  if (/^ЯРВ|^АВР/i.test(part))       return 'yarv';
+  if (/^ШО-/i.test(part))             return 'sho';
+  if (/блок/i.test(part))             return 'block';
+  if (/[Рр]яд/i.test(part))          return 'row';
+  return 'default';
+}
+
+const CHIP_TITLES = {
+  tp: 'Трансформаторная подстанция',
+  transformer: 'Трансформатор',
+  vru: 'Вводно-распределительное устройство',
+  shr: 'Щит распределительный',
+  yarv: 'Ящик/Автоматический ввод резерва',
+  sho: 'Щит освещения (конечный)',
+  block: 'Корпус рынка',
+  row: 'Ряд',
+  default: ''
+};
+
+function renderPath(pathStr) {
+  const parts = pathStr.split(' > ');
+  const chips = parts.map((p, i) => {
+    const type = getChipType(p);
+    const title = CHIP_TITLES[type] ? ` title="${CHIP_TITLES[type]}"` : '';
+    const sep = i < parts.length - 1 ? '<span class="path-sep">›</span>' : '';
+    return `<span class="path-chip chip-${type}"${title}>${p}</span>${sep}`;
+  }).join('');
+
+  const escaped = pathStr.replace(/"/g, '&quot;');
+  return `<div class="ai-path">
+    <div class="path-chips">${chips}</div>
+    <button class="copy-path-btn" onclick="copyPath(this)" data-path="${escaped}" title="Скопировать путь">📋</button>
+  </div>`;
+}
+
+function formatAIMessage(text) {
+  let html = '';
+  const lines = text.split('\n');
+  let inList = false;
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (!line) {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += '<div class="ai-spacer"></div>';
+      continue;
+    }
+
+    // Строка с путём (содержит ' > ' и начинается с известного элемента)
+    if (line.includes(' > ') && /^(ТП-|АВР|ВРУ|ЯРВ|ЩР|[Шш]ит|1-блок|2-блок|3-блок|Гипермаркет)/i.test(line)) {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += renderPath(line);
+      continue;
+    }
+
+    // Форматирование текста
+    let formatted = line
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+
+    if (line.startsWith('- ') || line.startsWith('• ')) {
+      if (!inList) { html += '<ul class="ai-list">'; inList = true; }
+      html += `<li>${formatted.replace(/^[-•]\s*/, '')}</li>`;
+    } else if (/^\d+\.\s/.test(line)) {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += `<div class="ai-numbered">${formatted}</div>`;
+    } else {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += `<div class="ai-text">${formatted}</div>`;
+    }
+  }
+
+  if (inList) html += '</ul>';
+  return html;
+}
+
+// ── Управление сообщениями ────────────────────────────────────────────────
+function addMessage(content, isUser = false, isHTML = false) {
+  const wrapper = document.createElement('div');
+  wrapper.className = `msg-wrapper ${isUser ? 'msg-user' : 'msg-ai'}`;
+
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+
+  if (isHTML) bubble.innerHTML = content;
+  else bubble.textContent = content;
+
+  wrapper.appendChild(bubble);
+  chatContainer.appendChild(wrapper);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function showTypingIndicator() {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'msg-wrapper msg-ai';
+  wrapper.id = 'typing-indicator';
+  wrapper.innerHTML = `<div class="msg-bubble typing-bubble">
+    <span class="typing-dot"></span>
+    <span class="typing-dot"></span>
+    <span class="typing-dot"></span>
+  </div>`;
+  chatContainer.appendChild(wrapper);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function hideTypingIndicator() {
+  document.getElementById('typing-indicator')?.remove();
+}
+
+// ── Копирование пути ──────────────────────────────────────────────────────
+function copyPath(btn) {
+  const path = btn.dataset.path;
+  navigator.clipboard.writeText(path).then(() => {
+    btn.textContent = '✓';
+    btn.style.color = '#059669';
+    setTimeout(() => { btn.textContent = '📋'; btn.style.color = ''; }, 2000);
+  }).catch(() => {
+    // fallback для старых браузеров
+    const ta = document.createElement('textarea');
+    ta.value = path;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓';
+    setTimeout(() => btn.textContent = '📋', 2000);
+  });
+}
+
+// ── Отправка сообщения ────────────────────────────────────────────────────
+async function sendToAI() {
+  const question = aiInput.value.trim();
+  if (!question) return;
+
+  addMessage(question, true);
+  aiInput.value = '';
+  aiSendBtn.disabled = true;
+  aiSendBtn.textContent = '⏳';
+
+  showTypingIndicator();
+
+  try {
+    const data = await callAIAPI(question);
+    hideTypingIndicator();
+
+    const reply = data.reply || 'ИИ не смог ответить.';
+    let html = formatAIMessage(reply);
+
+    // Показываем путь только если найден ровно один результат
+    if (data.found && data.paths && data.paths.length === 1) {
+      html += `<div style="margin-top:8px">${renderPath(data.paths[0].path)}</div>`;
+      html += `<div style="font-size:0.78rem;color:#475569;padding-left:4px">Магазины: ${data.paths[0].shops.join(', ')}</div>`;
+    }
+
+    addMessage(html, false, true);
+
+  } catch (error) {
+    hideTypingIndicator();
+    const isNetworkError = error instanceof TypeError && error.message.includes('fetch');
+    if (isNetworkError) {
+      addMessage(`❌ Сервер не запущен.<br><small>Дважды кликните <b>start.bat</b> для запуска.</small>`, false, true);
+    } else {
+      // Server is running but AI failed — show local results if available
+      const localResults = performLocalSearch(question);
+      if (localResults.length > 0) {
+        const lines = localResults.slice(0, 5).map(r =>
+          `• ${renderPath(r.path)} — магазины: ${r.shops.join(', ')}`
+        ).join('');
+        addMessage(`⚠️ ИИ недоступен (${error.message})<br><br>Результаты из базы данных:<br>${lines}`, false, true);
+      } else {
+        addMessage(`⚠️ ${error.message}`, false, true);
+      }
+    }
+    console.error('AI error:', error);
+  } finally {
+    aiSendBtn.disabled = false;
+    aiSendBtn.textContent = 'Отправить';
+  }
+}
+
+// ── Запрос к бэкенду ──────────────────────────────────────────────────────
+async function callAIAPI(question) {
+  // Сначала ищем локально в базе данных
+  const searchResults = performLocalSearch(question);
+
+  const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:3000'
+    : 'https://abusaxiy-backend.onrender.com';
+
+  const response = await fetch(API_BASE + '/api/ai', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ question, searchResults })
+  });
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.error || err.message || `Ошибка сервера: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+// ── Быстрые кнопки ───────────────────────────────────────────────────────
+document.querySelectorAll('.quick-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    aiInput.value = btn.dataset.q;
+    sendToAI();
+  });
+});
+
+// Кнопка и Enter
+aiSendBtn.addEventListener('click', sendToAI);
+aiInput.addEventListener('keypress', e => {
+  if (e.key === 'Enter') sendToAI();
+});
+
+// ── Приветствие ───────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    addMessage(formatAIMessage(
+      `**Привет!** Я ИИ-помощник по электроснабжению ТЦ Abusaxiy.\n` +
+      `Я знаю все пути питания магазинов и помогу найти нужную линию.\n\n` +
+      `Примеры запросов:\n` +
+      `- Путь питания магазина 47, 1-блок ряд E\n` +
+      `- Что такое ЩР и ВРУ?\n` +
+      `- Какие магазины подключены к ШО-E47?`
+    ), false, true);
+  }, 600);
+});

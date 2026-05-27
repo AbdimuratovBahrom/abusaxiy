@@ -26,3 +26,17 @@ git add .
 git commit -m "add up grade"
 
 git pull origin main
+
+
+
+cd "D:\My projects\abusaxiy"
+.\start.bat
+
+
+http://localhost:3000
+
+
+Покажи путь питания магазина 47 в 1-блоке ряд E
+
+
+

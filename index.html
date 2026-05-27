@@ -5,16 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Store Path Finder</title>
   <link rel="shortcut icon" href="./css/images/logo.jpg" type="image/x-icon">
-  <link rel="shortcut icon" href="https://via.placeholder.com/32?text=AS" type="image/x-icon"/>
   <link rel="stylesheet" href="./css/style.css"/>
-  <!-- Можно добавить свои фоновые картинки позже -->
 </head>
 <body>
   <div class="header">
     <div class="language-selector">
       <select id="languageSelect">
         <option value="ru">Русский</option>
-        <option value="uz">O‘zbekcha (Lotin)</option>
+        <option value="uz">O'zbekcha (Lotin)</option>
         <option value="uz_cyrl">Ўзбекча (Кирилл)</option>
       </select>
     </div>
@@ -46,13 +44,43 @@
 
       <div id="pathResult"></div>
 
+      <!-- ИИ-помощник -->
+      <div class="ai-section">
+        <div class="ai-header">
+          <div class="ai-title-row">
+            <span class="ai-icon">🤖</span>
+            <h2>ИИ-Помощник</h2>
+            <span class="ai-badge">AI</span>
+          </div>
+          <p class="ai-subtitle">Задавайте вопросы на русском или узбекском языке</p>
+        </div>
+
+        <div id="chatContainer" class="chat-container">
+          <!-- сообщения -->
+        </div>
+
+        <!-- Быстрые вопросы -->
+        <div class="quick-actions" id="quickActions">
+          <button class="quick-btn" data-q="Что такое ВРУ, ЩР, ЯРВ и ШО?">📖 Термины</button>
+          <button class="quick-btn" data-q="Как устроено электроснабжение 1-блока?">🏢 1-блок</button>
+          <button class="quick-btn" data-q="Что делать если отключился магазин?">🔧 Авария</button>
+        </div>
+
+        <div class="chat-input-row">
+          <input type="text" id="aiInput"
+            placeholder="Например: путь питания магазина 47, 1-блок ряд E"
+            autocomplete="off" />
+          <button id="aiSendBtn">Отправить</button>
+        </div>
+      </div>
+
       <div class="case">
         <a target="_blank" href="https://abdimuratovbahrom.github.io/Find-stores_by_ShR/">Блоки 1,2,3</a>
         <a target="_blank" href="https://abdimuratovbahrom.github.io/gipermarket_stores/">Гипермаркет</a>
       </div>
     </div>
   </div>
-  
+
   <script src="./js/script.js"></script>
 </body>
 </html>

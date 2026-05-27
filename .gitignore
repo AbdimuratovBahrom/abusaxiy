@@ -1,0 +1,12 @@
+# Секреты — никогда не пушить!
+backend/.env
+
+# Зависимости Node.js
+backend/node_modules/
+
+# Рабочие файлы Claude
+.claude/
+
+# Windows
+Thumbs.db
+desktop.ini
