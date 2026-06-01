@@ -19,13 +19,31 @@ try {
     if (err.code !== 'ENOENT') console.warn('⚠️  Ошибка чтения .env:', err.message);
 }
 
-const PORT        = process.env.PORT || 3000;
-const GEMINI_KEY  = process.env.GEMINI_API_KEY;
-const SITE        = path.resolve(__dirname, '..');
+const PORT             = process.env.PORT || 3000;
+const SITE             = path.resolve(__dirname, '..');
 const MAX_QUESTION_LEN = 5000;
+const KEY_COOLDOWN_MS  = 60_000; // 1 минута cooldown при 429
 
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const genAI = GEMINI_KEY ? new GoogleGenerativeAI(GEMINI_KEY) : null;
+
+// ── Загрузка ключей (ротация) ─────────────────────────────────
+// Форматы в .env:
+//   GEMINI_API_KEY=key1                 (одиночный, обратная совместимость)
+//   GEMINI_API_KEYS=key1,key2,key3      (список через запятую)
+//   GEMINI_API_KEY_1=key1               (пронумерованные)
+//   GEMINI_API_KEY_2=key2
+const GEMINI_KEYS = (() => {
+    const seen = new Set();
+    const add  = k => { if (k?.trim()) seen.add(k.trim()); };
+    add(process.env.GEMINI_API_KEY);
+    (process.env.GEMINI_API_KEYS || '').split(',').forEach(add);
+    for (let i = 1; i <= 20; i++) add(process.env[`GEMINI_API_KEY_${i}`]);
+    return [...seen];
+})();
+
+const geminiClients = GEMINI_KEYS.map(k => new GoogleGenerativeAI(k));
+const keyCooldown   = new Array(GEMINI_KEYS.length).fill(0); // unix ms: до какого времени ключ на cooldown
+let   rrIdx         = 0; // round-robin стартовая позиция
 
 console.log('Папка сайта:', SITE);
 
@@ -96,8 +114,8 @@ async function serveStatic(res, filePath) {
 
 // ── AI-запрос (Gemini) ────────────────────────────────────────
 async function handleAI(req, res) {
-    if (!genAI) {
-        jsonResponse(res, 500, { error: 'GEMINI_API_KEY не найден в .env файле.' });
+    if (geminiClients.length === 0) {
+        jsonResponse(res, 500, { error: 'Ни один GEMINI_API_KEY не найден в .env файле.' });
         return;
     }
 
@@ -147,25 +165,46 @@ async function handleAI(req, res) {
     }
 
     const systemInstruction = SYSTEM_PROMPT + ctx;
-    const models = ['gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-2.0-flash-lite', 'gemini-flash-lite-latest'];
+    const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-2.0-flash-lite', 'gemini-flash-lite-latest'];
+    const n      = geminiClients.length;
+    const now    = Date.now();
 
-    for (const modelName of models) {
-        try {
-            const model  = genAI.getGenerativeModel({ model: modelName, systemInstruction });
-            const result = await model.generateContent({
-                contents: [{ role: 'user', parts: [{ text: cleanQuestion }] }],
-                generationConfig: { temperature: 0.15, maxOutputTokens: 1000 }
-            });
-            const answer = result.response.text().trim() || 'ИИ не смог ответить.';
-            console.log(`  ✅ Модель: ${modelName}`);
-            jsonResponse(res, 200, { reply: answer, found: searchResults.length > 0, paths: searchResults.slice(0, 5) });
-            return;
-        } catch (e) {
-            console.log(`  ✗ ${modelName}: ${e.message}`);
+    // Перебираем ключи по round-robin; внутри каждого ключа — все модели
+    for (let ki = 0; ki < n; ki++) {
+        const keyIdx = (rrIdx + ki) % n;
+
+        if (now < keyCooldown[keyIdx]) {
+            const secsLeft = Math.ceil((keyCooldown[keyIdx] - now) / 1000);
+            console.log(`  ⏳ Ключ ${keyIdx + 1}/${n} cooldown ещё ${secsLeft}s — пропускаем`);
+            continue;
+        }
+
+        for (const modelName of MODELS) {
+            try {
+                const model  = geminiClients[keyIdx].getGenerativeModel({ model: modelName, systemInstruction });
+                const result = await model.generateContent({
+                    contents: [{ role: 'user', parts: [{ text: cleanQuestion }] }],
+                    generationConfig: { temperature: 0.15, maxOutputTokens: 1000 }
+                });
+                const answer = result.response.text().trim() || 'ИИ не смог ответить.';
+                rrIdx = (keyIdx + 1) % n; // сдвигаем round-robin для следующего запроса
+                console.log(`  ✅ Ключ ${keyIdx + 1}/${n}, модель: ${modelName}`);
+                jsonResponse(res, 200, { reply: answer, found: searchResults.length > 0, paths: searchResults.slice(0, 5) });
+                return;
+            } catch (e) {
+                const is429 = e.status === 429 ||
+                              /429|quota exceeded|RESOURCE_EXHAUSTED/i.test(e.message);
+                if (is429) {
+                    keyCooldown[keyIdx] = Date.now() + KEY_COOLDOWN_MS;
+                    console.log(`  ✗ Ключ ${keyIdx + 1}/${n} — лимит превышен, cooldown ${KEY_COOLDOWN_MS / 1000}s`);
+                    break; // переходим к следующему ключу
+                }
+                console.log(`  ✗ Ключ ${keyIdx + 1}/${n}, ${modelName}: ${e.message}`);
+            }
         }
     }
 
-    jsonResponse(res, 500, { error: 'Все модели недоступны. Проверьте GEMINI_API_KEY и интернет.' });
+    jsonResponse(res, 500, { error: 'Все ключи и модели недоступны. Проверьте лимиты и интернет.' });
 }
 
 // ── Утилиты ───────────────────────────────────────────────────
@@ -230,7 +269,11 @@ const server = http.createServer(async (req, res) => {
 // ── Запуск ────────────────────────────────────────────────────
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ Сервер запущен на http://localhost:${PORT}`);
-    console.log(`   Gemini ключ: ${GEMINI_KEY ? 'загружен ✓' : 'НЕ НАЙДЕН ✗'}`);
+    if (GEMINI_KEYS.length === 0) {
+        console.log('   ❌ Gemini ключи: НЕ НАЙДЕНЫ — добавьте GEMINI_API_KEY в .env');
+    } else {
+        console.log(`   Gemini ключи: ${GEMINI_KEYS.length} шт. загружено ✓ (ротация активна)`);
+    }
     console.log('   Ожидаю запросы... (Ctrl+C для остановки)');
 });
 
