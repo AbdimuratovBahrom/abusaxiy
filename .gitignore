@@ -4,8 +4,16 @@ backend/.env
 # Зависимости Node.js
 backend/node_modules/
 
+# Логи сервера
+backend/*.log
+
 # Рабочие файлы Claude
 .claude/
+.claude-flow/
+
+# Графы и векторные базы
+graphify-out/
+*.db
 
 # Windows
 Thumbs.db

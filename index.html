@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Поиск линий электроснабжения магазинов ТЦ Abusaxiy (Ташкент). Найдите путь питания любого магазина по блоку и ряду."/>
+  <meta name="theme-color" content="#1e40af"/>
   <title>Store Path Finder</title>
-  <link rel="shortcut icon" href="./css/images/logo.jpg" type="image/x-icon">
+  <link rel="shortcut icon" href="./css/images/logo.jpg" type="image/jpeg">
   <link rel="stylesheet" href="./css/style.css"/>
 </head>
 <body>
@@ -25,7 +27,8 @@
     <div class="container">
       <h1>Поиск линий электроснабжения магазинов</h1>
 
-      <select id="block">
+      <label for="block" class="sr-only">Выберите блок</label>
+      <select id="block" aria-label="Выберите блок">
         <option value="">Выберите блок</option>
         <option value="1-блок">1-блок</option>
         <option value="2-блок">2-блок</option>
@@ -34,15 +37,17 @@
         <option value="Специфические объекты">Специфические объекты</option>
       </select>
 
-      <select id="row" disabled>
+      <label for="row" class="sr-only">Выберите ряд</label>
+      <select id="row" disabled aria-label="Выберите ряд">
         <option value="">Выберите ряд</option>
       </select>
 
-      <select id="store" disabled>
+      <label for="store" class="sr-only">Выберите магазин</label>
+      <select id="store" disabled aria-label="Выберите магазин">
         <option value="">Выберите магазин</option>
       </select>
 
-      <div id="pathResult"></div>
+      <div id="pathResult" aria-live="polite" aria-atomic="true"></div>
 
       <!-- ИИ-помощник -->
       <div class="ai-section">
@@ -55,7 +60,7 @@
           <p class="ai-subtitle">Задавайте вопросы на русском или узбекском языке</p>
         </div>
 
-        <div id="chatContainer" class="chat-container">
+        <div id="chatContainer" class="chat-container" aria-live="polite" aria-label="История чата" role="log">
           <!-- сообщения -->
         </div>
 
@@ -67,8 +72,10 @@
         </div>
 
         <div class="chat-input-row">
+          <label for="aiInput" class="sr-only">Введите вопрос для ИИ-помощника</label>
           <input type="text" id="aiInput"
             placeholder="Например: путь питания магазина 47, 1-блок ряд E"
+            aria-label="Введите вопрос для ИИ-помощника"
             autocomplete="off" />
           <button id="aiSendBtn">Отправить</button>
         </div>
@@ -81,6 +88,6 @@
     </div>
   </div>
 
-  <script src="./js/script.js"></script>
+  <script src="./js/script.js" defer></script>
 </body>
 </html>

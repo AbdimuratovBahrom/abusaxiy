@@ -5,8 +5,6 @@
 // Все данные в едином формате
 const DATA = {
 "1-блок": {
-    rows: ["A", "B", "C", "D", "E", "F", "H", "K", "L", "M", "O", "Q", "R", "V"],
-    shopsByRow: {},
     paths: [
       // Ряд E
         {
@@ -162,7 +160,7 @@ const DATA = {
             'shops': ['34', '35']
         },
         {
-            'path': 'ТП-6699 > Т1 > ВРУ1 > ЩР6 > 1-блок > Ряд K > ЯРВ6(C) > ШО-C52',
+            'path': 'ТП-6699 > Т1 > ВРУ1 > ЩР5 > 1-блок > Ряд K > ЯРВ6(C) > ШО-C52',
             'shops': ['7', '8', '9']
         },
         {
@@ -220,10 +218,7 @@ const DATA = {
             'path': 'ТП-6699 > Т1 > ВРУ4 > ЩР2 > 1-блок > Ряд M > ЯРВ7(D) > ШО-D47',
             'shops': ['43', '44']
         },
-        {
-            'path': 'ТП-6699 > Т1 > ВРУ5 > ЩР6 > 1-блок > Ряд M > ЯРВ6(C) > ШО-C52',
-            'shops': ['48', '49']
-        },
+       
         
         {
             'path': 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд M > ЯРВ9(B65) > ШО-M8',
@@ -474,16 +469,20 @@ const DATA = {
         // Ряд V
         {
             'path': 'ТП-4768 > Т1 > АВР(ЩР18) > ЩР-Vip > 1-блок > Ряд V',
-            'shops': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16']
+            'shops': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+        },
+        {
+            'path': 'ТП-4768 > Т1 > АВР(ЩР18) > ЩР-Vip > ШО-V14 > 1-блок > Ряд V',
+            'shops': [ '14', '14a', '15', '16']
         },
 
          // Ряд O
         {
-            'path': 'ТП-7694 > Т1 > АРВ-сомсахона > ЩР-сомсахона > 1-блок > Маржон > Ряд O',
+            'path': 'ТП-7694 > Т1 > АВР-сомсахона > ЩР-сомсахона > 1-блок > Маржон > Ряд O',
             'shops': ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         },
          {
-            'path': 'ТП-7694 > Т1 > АРВ-сомсахона > ЩР-сомсахона > ШО-О > 1-блок > Маржон > Ряд O',
+            'path': 'ТП-7694 > Т1 > АВР-сомсахона > ЩР-сомсахона > ШО-О > 1-блок > Маржон > Ряд O',
             'shops': ['10', '11', '12', '13', '14', '15', '16']
         }
     ]
@@ -551,7 +550,7 @@ const DATA = {
     },
     {
         'path': 'ТП-6699 > Т1 > 2-блок шитовой > Шит-6 > 2-блок > Ряд P > ШО-5(1)',
-        'shops': ['90','91','94','96','97','90','91','92','93','102','104','105','108']
+        'shops': ['90','91','92','93','94','96','97','102','104','105','108']
     },
     {
         'path': 'ТП-6699 > Т1 > 2-блок шитовой > Шит-6 > 2-блок > Ряд P > ШО-5(2)',
@@ -666,11 +665,11 @@ const DATA = {
         },
         {
             'path': 'ТП-4768 > Т2 > АВР(ЩР15) > 3-блок > 3 блок ЩРхона > ЩР15 > Ряд 2 > ШО-13',
-            'shops': ['23','25','27','29','31','33','35','37', '39', '41', '43','45']
+            'shops': ['23', '24', '26', '27', '29', '31', '33', '38', '40', '42', '44', '45']
         },
         {
             'path': 'ТП-5353 > Т2 > АВР(ЩР16g) > 3-блок > 3 блок ЩРхона > ЩР16g > Ряд 2 > ШО-13g', 
-            'shops': ['24g', '26g', '28g', '30g', '32g', '34g', '36g', '38g', '40g', '42g', '44g', '46g']
+            'shops': ['25g', '28g', '30g', '32g', '34g', '35g','36g', '37g', '39g', '41g', '43g', '46g']
         },
         
         // Ряд 3
@@ -801,7 +800,7 @@ const DATA = {
         },
         {
             'path':'ТП-5353 > Т2 > АВР(1) > Подвал > ШО-5',
-            'shops': ['7', '8', '9', '10', '12', '13', '14', '15', '16', '17', '18', '19', '20', '20a',  '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52']
+            'shops': ['7', '8', '9', '10', '12', '13', '14', '15', '16', '17', '18', '19', '20', '20a', '21', '22', '23', '24', '25', '26', '27', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52']
         },
         
         {
@@ -888,9 +887,9 @@ const DATA = {
       // Все специальные объекты собраны здесь
 
       // Специфические из 1-блока
-      { path: 'ТП-7694 > Т1 > АРВ-сомсахона > ЩР-сомсахона', shops: ['Сомсахона-1', 'Сомсахона-2', 'Сомсахона-3', 'Гош дукон', 'Милицияхона', 'эски офис олдидаги fastfood  фургон'] },
-       { path: 'ТП-7694 > Т1 > АРВ-сомсахона > ЩР-сомсахона > ШО-О ', shops: [ 'Сомсахона-2', 'Сомсахона-2 самовар'] },
-      { path: 'ТП-7694 > Т1 > АРВ-сомсахона > ЩР-сомсахона > 1-блок > Ряд O >  ШО-1-ошхона > 1-ошхона(1-линия)', shops: ['1-ошхона(1-линия)'] },
+      { path: 'ТП-7694 > Т1 > АВР-сомсахона > ЩР-сомсахона', shops: ['Сомсахона-1', 'Сомсахона-2', 'Сомсахона-3', 'Гош дукон', 'Милицияхона', 'эски офис олдидаги fastfood  фургон'] },
+       { path: 'ТП-7694 > Т1 > АВР-сомсахона > ЩР-сомсахона > ШО-О ', shops: [ 'Сомсахона-2', 'Сомсахона-2 самовар'] },
+      { path: 'ТП-7694 > Т1 > АВР-сомсахона > ЩР-сомсахона > 1-блок > Ряд O >  ШО-1-ошхона > 1-ошхона(1-линия)', shops: ['1-ошхона(1-линия)'] },
       { path: 'ТП-6699 > Т2 > ВРУ3 > ЩР3 > 1-блок > Ряд O > ШО-1-ошхона > 1-ошхона(2-линия)', shops: ['1-ошхона(2-линия)'] },
       { path: 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > Офис', shops: ['Офис'] },
       { path: 'ТП-6699 > Т1 > ВРУ3 > ЩР3 > 1-блок > Ряд Офис > Офис-дизель шит (1-линия) > ШО-1-блок освищение > 1-блок освищение', shops: ['1-блок освищение'] },
@@ -992,7 +991,7 @@ const DATA = {
         
 
         {
-        'path': 'ТП-7694 > Т1 > АРВ-сомсахона > ЩР-сомсахона',
+        'path': 'ТП-7694 > Т1 > АВР-сомсахона > ЩР-сомсахона',
             'shops': ['Сомсахона-1', 'Сомсахона-2', 'Сомсахона-3', 'Гош дукон', 'Милицияхона']
         },
         {  'path': 'ТП-7694 > Т2 > Дизель шит > Резервуар(автомат) > 1-блок > Ряд R > ШО-R2 > Резервуар шит',
@@ -1026,21 +1025,33 @@ const translations = {
     selectBlock: "Выберите блок",
     selectRow: "Выберите ряд",
     selectStore: "Выберите магазин",
-    pathNotFound: "Путь не найден"
+    pathNotFound: "Путь не найден",
+    showBlocks: "Показать блоки",
+    hideBlocks: "Скрыть блоки",
+    inputPlaceholder: "Например: путь питания магазина 47, 1-блок ряд E",
+    sendBtn: "Отправить"
   },
   uz: {
     title: "Do'konlar elektr ta'minoti liniyalarini qidirish",
     selectBlock: "Blokni tanlang",
     selectRow: "Qatorni tanlang",
     selectStore: "Do'konni tanlang",
-    pathNotFound: "Yo'l topilmadi"
+    pathNotFound: "Yo'l topilmadi",
+    showBlocks: "Bloklarni ko'rsatish",
+    hideBlocks: "Bloklarni yashirish",
+    inputPlaceholder: "Masalan: 47-do'kon, 1-blok E qator",
+    sendBtn: "Yuborish"
   },
   uz_cyrl: {
     title: "Дўконлар электр таъминоти линияларини қидириш",
     selectBlock: "Блокни танланг",
     selectRow: "Қаторни танланг",
     selectStore: "Дўконни танланг",
-    pathNotFound: "Йўл топилмади"
+    pathNotFound: "Йўл топилмади",
+    showBlocks: "Блокларни кўрсатиш",
+    hideBlocks: "Блокларни яшириш",
+    inputPlaceholder: "Масалан: 47-дўкон, 1-блок E қатор",
+    sendBtn: "Юбориш"
   }
 };
 
@@ -1048,7 +1059,21 @@ let currentLang = "ru";
 
 function updateLanguage() {
   currentLang = langSelect.value;
-  document.querySelector("h1").textContent = translations[currentLang].title;
+  const t = translations[currentLang];
+  document.querySelector("h1").textContent = t.title;
+  document.documentElement.lang = currentLang === 'ru' ? 'ru' : 'uz';
+
+  const aiInputEl = document.getElementById("aiInput");
+  if (aiInputEl) aiInputEl.placeholder = t.inputPlaceholder;
+
+  const aiSendBtnEl = document.getElementById("aiSendBtn");
+  if (aiSendBtnEl && aiSendBtnEl.textContent !== '⏳') aiSendBtnEl.textContent = t.sendBtn;
+
+  // Обновляем текст toggle-кнопки в соответствии с текущим состоянием
+  const container = document.querySelector(".container");
+  if (container) {
+    toggleBtn.textContent = container.classList.contains("hidden-block") ? t.showBlocks : t.hideBlocks;
+  }
 }
 
 langSelect.addEventListener("change", updateLanguage);
@@ -1057,9 +1082,8 @@ langSelect.addEventListener("change", updateLanguage);
 toggleBtn.addEventListener("click", () => {
   const container = document.querySelector(".container");
   container.classList.toggle("hidden-block");
-  toggleBtn.textContent = container.classList.contains("hidden-block")
-    ? (currentLang === "ru" ? "Показать блоки" : "Блокларни кўрсатиш")
-    : (currentLang === "ru" ? "Скрыть блоки" : "Блокларни яшириш");
+  const t = translations[currentLang];
+  toggleBtn.textContent = container.classList.contains("hidden-block") ? t.showBlocks : t.hideBlocks;
 });
 
 // Обработка изменения блока
@@ -1087,8 +1111,8 @@ blockSelect.addEventListener("change", function() {
     });
 
     const sortedShops = [...allShops].sort((a, b) => {
-      const na = parseFloat(a) || 999999999;
-      const nb = parseFloat(b) || 999999999;
+      const na = isNaN(parseFloat(a)) ? 999999999 : parseFloat(a);
+      const nb = isNaN(parseFloat(b)) ? 999999999 : parseFloat(b);
       return na !== nb ? na - nb : a.localeCompare(b, 'ru');
     });
 
@@ -1154,8 +1178,8 @@ rowSelect.addEventListener("change", function() {
 
   // Сортировка (цифры первыми, потом строки)
   const sortedShops = [...shops].sort((a, b) => {
-    const na = parseFloat(a) || 999999999;
-    const nb = parseFloat(b) || 999999999;
+    const na = isNaN(parseFloat(a)) ? 999999999 : parseFloat(a);
+    const nb = isNaN(parseFloat(b)) ? 999999999 : parseFloat(b);
     return na !== nb ? na - nb : a.localeCompare(b, 'ru');
   });
 
@@ -1199,7 +1223,7 @@ storeSelect.addEventListener("change", function() {
         !["Гипермаркет", "Специфические объекты"].includes(block)) {
         
         // Используем регулярку для точного совпадения: "Ряд " + row + " " или ">"
-        const rowRegex = new RegExp(`Ряд\\s+${row}\\b`, 'i');
+        const rowRegex = new RegExp(`Ряд\\s+${escapeRegExp(row)}\\b`, 'i');
         
         matches = matches.filter(item => rowRegex.test(item.path));
     }
@@ -1242,7 +1266,7 @@ const CYR_MAP = {
   'г':'g',
   'д':'d',
   'е':'e','ё':'e',
-  'ж':'j',          // ж = j
+  'ж':'zh',         // ж = zh
   'з':'z',
   'и':'i',
   'й':'y',          // й = y
@@ -1421,6 +1445,15 @@ function performLocalSearch(question) {
 }
 
 // ── Визуализация пути ─────────────────────────────────────────────────────
+function escapeHTML(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function getChipType(part) {
   if (/^ТП-/i.test(part))             return 'tp';
   if (/^(Т1|Т2)$/i.test(part))        return 'transformer';
@@ -1449,12 +1482,12 @@ function renderPath(pathStr) {
   const parts = pathStr.split(' > ');
   const chips = parts.map((p, i) => {
     const type = getChipType(p);
-    const title = CHIP_TITLES[type] ? ` title="${CHIP_TITLES[type]}"` : '';
+    const title = CHIP_TITLES[type] ? ` title="${escapeHTML(CHIP_TITLES[type])}"` : '';
     const sep = i < parts.length - 1 ? '<span class="path-sep">›</span>' : '';
-    return `<span class="path-chip chip-${type}"${title}>${p}</span>${sep}`;
+    return `<span class="path-chip chip-${type}"${title}>${escapeHTML(p)}</span>${sep}`;
   }).join('');
 
-  const escaped = pathStr.replace(/"/g, '&quot;');
+  const escaped = escapeHTML(pathStr);
   return `<div class="ai-path">
     <div class="path-chips">${chips}</div>
     <button class="copy-path-btn" onclick="copyPath(this)" data-path="${escaped}" title="Скопировать путь">📋</button>
@@ -1462,6 +1495,7 @@ function renderPath(pathStr) {
 }
 
 function formatAIMessage(text) {
+  if (!text || typeof text !== 'string') return '<div class="ai-text">ИИ не смог ответить.</div>';
   let html = '';
   const lines = text.split('\n');
   let inList = false;
@@ -1544,15 +1578,8 @@ function copyPath(btn) {
     btn.style.color = '#059669';
     setTimeout(() => { btn.textContent = '📋'; btn.style.color = ''; }, 2000);
   }).catch(() => {
-    // fallback для старых браузеров
-    const ta = document.createElement('textarea');
-    ta.value = path;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    btn.textContent = '✓';
-    setTimeout(() => btn.textContent = '📋', 2000);
+    btn.textContent = '✗';
+    setTimeout(() => { btn.textContent = '📋'; btn.style.color = ''; }, 2000);
   });
 }
 
@@ -1609,25 +1636,35 @@ async function sendToAI() {
 
 // ── Запрос к бэкенду ──────────────────────────────────────────────────────
 async function callAIAPI(question) {
-  // Сначала ищем локально в базе данных
   const searchResults = performLocalSearch(question);
 
   const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:3000'
     : 'https://abusaxiy-elektrik.onrender.com';
 
-  const response = await fetch(API_BASE + '/api/ai', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ question, searchResults })
-  });
+  const controller = new AbortController();
+  const timeoutId  = setTimeout(() => controller.abort(), 15000);
 
-  if (!response.ok) {
-    const err = await response.json().catch(() => ({}));
-    throw new Error(err.error || err.message || `Ошибка сервера: ${response.status}`);
+  try {
+    const response = await fetch(API_BASE + '/api/ai', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, searchResults }),
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error || err.message || `Ошибка сервера: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (e) {
+    clearTimeout(timeoutId);
+    if (e.name === 'AbortError') throw new Error('Таймаут запроса (15 сек)');
+    throw e;
   }
-
-  return response.json();
 }
 
 // ── Быстрые кнопки ───────────────────────────────────────────────────────
