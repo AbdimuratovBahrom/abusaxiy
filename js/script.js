@@ -1242,7 +1242,7 @@ storeSelect.addEventListener("change", function() {
             displayPath += ` > ${matchingShop}`;
         }
 
-        return `<strong>${displayPath}</strong>`;
+        return `<strong>${displayPath}</strong>${feedNoteForShops([matchingShop])}`;
     }).join("<br><br>");
 
     result.innerHTML = output;
@@ -1262,7 +1262,7 @@ const aiSendBtn = document.getElementById("aiSendBtn");
 const CYR_MAP = {
   'а':'a',          // а = a
   'б':'b',
-  'в':'v',
+  'в':'b',          // в = B (визуально похожие буквы в кодах щитов)
   'г':'g',
   'д':'d',
   'е':'e','ё':'e',
@@ -1273,15 +1273,15 @@ const CYR_MAP = {
   'к':'k',
   'л':'l',
   'м':'m',
-  'н':'n',
+  'н':'h',          // н = H (визуально похожие буквы в кодах щитов)
   'о':'o',          // о = o
   'п':'p',
   'р':'r',
-  'с':'s',          // с = s
+  'с':'c',          // с = C (визуально похожие буквы в кодах щитов, напр. ШО-C79)
   'т':'t',          // т = t
   'у':'u',          // у = u
   'ф':'f',
-  'х':'h',          // х = h
+  'х':'x',          // х = X (визуально похожие буквы в кодах щитов)
   'ц':'ts',
   'ч':'ch',
   'ш':'sh','щ':'sch',
@@ -1305,7 +1305,7 @@ function performLocalSearch(question) {
 
   // ── Компактный формат: 1-F-100, 2-S-15, 3-6-18 ───────────────────────────
   let compactBlock = null, compactRow = null, compactShop = null;
-  const compact = question.match(/^[^\d]*(\d)\s*[-–]\s*([A-Za-zА-ЯЁ0-9]+)\s*[-–]\s*(\d+)/);
+  const compact = question.match(/^[^\d]*(\d)\s*[-–]\s*([A-Za-zА-ЯЁ0-9]+)\s*[-–]\s*(\d+[A-Za-zА-ЯЁ]*)/);
   if (compact) {
     const blockMap = { '1':'1-блок', '2':'2-блок', '3':'3-блок' };
     compactBlock = blockMap[compact[1]];
@@ -1369,11 +1369,16 @@ function performLocalSearch(question) {
   }
 
   // Строим поисковую фразу: убираем только блок/ряд/служебные слова
-  const stopRx = /\b(где|найди|путь|блок|ряд|магазин|включить|отключить|питание|подключен|показ|как|что|такое|это|в|на|для|к|и|или)\b/gi;
+  // (\b не работает с кириллицей в JS-regex, поэтому фильтруем по словам, а не regex-заменой)
+  const STOP_WORDS = new Set(['где','откуда','что','такое','это','в','на','для','к','и','или']);
+  // Основы слов — покрывают склонения/спряжения (магазина, ряду, питается, подключены, какие и т.д.)
+  const STOP_STEMS = ['найд','пут','блок','ряд','магазин','включ','отключ','пита','подключ','показ','как','котор'];
+  const isStopWord = w => STOP_WORDS.has(w) || STOP_STEMS.some(stem => w.startsWith(stem));
   const searchPhrase = q
     .replace(/\d+\s*[-–—]?\s*(го|й|ый|ой)?\s*(блок|block)/gi, '')
-    .replace(stopRx, '')
-    .replace(/\s+/g, ' ').trim();
+    .split(/\s+/)
+    .filter(w => w && !isStopWord(w))
+    .join(' ').trim();
 
   // Резервные слова — сохраняем короткие коды вроде "6a", "4b"
   const fallbackWords = searchPhrase.split(/[\s]+/)
@@ -1412,9 +1417,15 @@ function performLocalSearch(question) {
       if (shopCandidates.length === 0 && !hasTextSearch) {
         shopMatch = true; // нет критериев — берём всё в ряду
       } else if (shopCandidates.length > 0) {
-        shopMatch = shopCandidates.some(num =>
-          item.shops.some(s => normalizeId(s) === normalizeId(num))
-        );
+        shopMatch = shopCandidates.some(num => {
+          const normNum = normalizeId(num);
+          return item.shops.some(s => {
+            const normS = normalizeId(s);
+            if (normS === normNum) return true;
+            // "19" тоже должно находить "19g", "19a" и т.д. (номер + буква-суффикс, без цифр)
+            return normS.startsWith(normNum) && /^[a-z]*$/i.test(normS.slice(normNum.length));
+          });
+        });
       }
 
       // Совпадение по текстовой фразе — с нормализацией кир↔лат
@@ -1477,6 +1488,17 @@ const CHIP_TITLES = {
   row: 'Ряд',
   default: ''
 };
+
+// Буква "g" в номере магазина — питание от ТП-5353 (см. GRAPH_REPORT / данные ниже)
+function feedNoteForShops(shops) {
+  const hasG = (shops || []).some(s => {
+    const v = String(s).trim();
+    return /g$/i.test(v) && /\d/.test(v); // например 19g, 12ag, 12bg
+  });
+  return hasG
+    ? `<div style="font-size:0.78rem;color:#0369a1;margin-top:2px">⚡ Буква «g» в номере магазина — питание от ТП-5353</div>`
+    : '';
+}
 
 function renderPath(pathStr) {
   const parts = pathStr.split(' > ');
@@ -1606,6 +1628,7 @@ async function sendToAI() {
     if (data.found && data.paths && data.paths.length === 1) {
       html += `<div style="margin-top:8px">${renderPath(data.paths[0].path)}</div>`;
       html += `<div style="font-size:0.78rem;color:#475569;padding-left:4px">Магазины: ${data.paths[0].shops.join(', ')}</div>`;
+      html += feedNoteForShops(data.paths[0].shops);
     }
 
     addMessage(html, false, true);
@@ -1620,7 +1643,7 @@ async function sendToAI() {
       const localResults = performLocalSearch(question);
       if (localResults.length > 0) {
         const lines = localResults.slice(0, 5).map(r =>
-          `• ${renderPath(r.path)} — магазины: ${r.shops.join(', ')}`
+          `• ${renderPath(r.path)} — магазины: ${r.shops.join(', ')}${feedNoteForShops(r.shops)}`
         ).join('');
         addMessage(`⚠️ ИИ недоступен (${error.message})<br><br>Результаты из базы данных:<br>${lines}`, false, true);
       } else {
@@ -1643,7 +1666,7 @@ async function callAIAPI(question) {
     : 'https://abusaxiy-elektrik.onrender.com';
 
   const controller = new AbortController();
-  const timeoutId  = setTimeout(() => controller.abort(), 15000);
+  const timeoutId  = setTimeout(() => controller.abort(), 30000);
 
   try {
     const response = await fetch(API_BASE + '/api/ai', {
@@ -1662,7 +1685,7 @@ async function callAIAPI(question) {
     return response.json();
   } catch (e) {
     clearTimeout(timeoutId);
-    if (e.name === 'AbortError') throw new Error('Таймаут запроса (15 сек)');
+    if (e.name === 'AbortError') throw new Error('Таймаут запроса (30 сек)');
     throw e;
   }
 }
