@@ -1048,7 +1048,28 @@ const translations = {
     showBlocks: "Показать блоки",
     hideBlocks: "Скрыть блоки",
     inputPlaceholder: "Например: путь питания магазина 47, 1-блок ряд E",
-    sendBtn: "Отправить"
+    sendBtn: "Отправить",
+    aiTitle: "ИИ-Помощник",
+    aiSubtitle: "Задавайте вопросы на русском или узбекском языке",
+    noAnswer: "ИИ не смог ответить.",
+    shopsLabel: "Магазины",
+    serverDown: "Сервер не запущен.",
+    serverDownHint: "Дважды кликните <b>start.bat</b> для запуска.",
+    aiUnavailable: "ИИ недоступен",
+    dbResults: "Результаты из базы данных",
+    timeout: "Таймаут запроса (30 сек)",
+    serverError: "Ошибка сервера",
+    quickActions: {
+      terms:     { label: "📖 Термины", q: "Что такое ВРУ, ЩР, ЯРВ и ШО?" },
+      block1:    { label: "🏢 1-блок",  q: "Как устроено электроснабжение 1-блока?" },
+      emergency: { label: "🔧 Авария",  q: "Что делать если отключился магазин?" }
+    },
+    welcomeMsg: `**Привет!** Я ИИ-помощник по электроснабжению ТЦ Abusaxiy.\n` +
+      `Я знаю все пути питания магазинов и помогу найти нужную линию.\n\n` +
+      `Примеры запросов:\n` +
+      `- Путь питания магазина 47, 1-блок ряд E\n` +
+      `- Что такое ЩР и ВРУ?\n` +
+      `- Какие магазины подключены к ШО-E47?`
   },
   uz: {
     title: "Do'konlar elektr ta'minoti liniyalarini qidirish",
@@ -1059,7 +1080,28 @@ const translations = {
     showBlocks: "Bloklarni ko'rsatish",
     hideBlocks: "Bloklarni yashirish",
     inputPlaceholder: "Masalan: 47-do'kon, 1-blok E qator",
-    sendBtn: "Yuborish"
+    sendBtn: "Yuborish",
+    aiTitle: "AI-Yordamchi",
+    aiSubtitle: "Savollaringizni rus yoki o'zbek tilida bering",
+    noAnswer: "AI javob bera olmadi.",
+    shopsLabel: "Do'konlar",
+    serverDown: "Server ishga tushirilmagan.",
+    serverDownHint: "Ishga tushirish uchun <b>start.bat</b> ustiga ikki marta bosing.",
+    aiUnavailable: "AI mavjud emas",
+    dbResults: "Ma'lumotlar bazasidan natijalar",
+    timeout: "So'rov vaqti tugadi (30 soniya)",
+    serverError: "Server xatosi",
+    quickActions: {
+      terms:     { label: "📖 Atamalar", q: "VRU, SHR, YARV va SHO nima?" },
+      block1:    { label: "🏢 1-blok",   q: "1-blokning elektr ta'minoti qanday tuzilgan?" },
+      emergency: { label: "🔧 Avariya",  q: "Do'kon o'chib qolsa nima qilish kerak?" }
+    },
+    welcomeMsg: `**Salom!** Men Abusaxiy SB elektr ta'minoti bo'yicha AI-yordamchiman.\n` +
+      `Men barcha do'konlarning ta'minot yo'llarini bilaman va kerakli liniyani topishga yordam beraman.\n\n` +
+      `So'rov namunalari:\n` +
+      `- 47-do'kon ta'minot yo'li, 1-blok E qator\n` +
+      `- SHR va VRU nima?\n` +
+      `- ШО-E47 ga qaysi do'konlar ulangan?`
   },
   uz_cyrl: {
     title: "Дўконлар электр таъминоти линияларини қидириш",
@@ -1070,7 +1112,28 @@ const translations = {
     showBlocks: "Блокларни кўрсатиш",
     hideBlocks: "Блокларни яшириш",
     inputPlaceholder: "Масалан: 47-дўкон, 1-блок E қатор",
-    sendBtn: "Юбориш"
+    sendBtn: "Юбориш",
+    aiTitle: "АИ-Ёрдамчи",
+    aiSubtitle: "Саволларингизни рус ёки ўзбек тилида беринг",
+    noAnswer: "АИ жавоб бера олмади.",
+    shopsLabel: "Дўконлар",
+    serverDown: "Сервер ишга туширилмаган.",
+    serverDownHint: "Ишга тушириш учун <b>start.bat</b> устига икки марта босинг.",
+    aiUnavailable: "АИ мавжуд эмас",
+    dbResults: "Маълумотлар базасидан натижалар",
+    timeout: "Сўров вақти тугади (30 сония)",
+    serverError: "Сервер хатоси",
+    quickActions: {
+      terms:     { label: "📖 Атамалар", q: "ВРУ, ШР, ЯРВ ва ШО нима?" },
+      block1:    { label: "🏢 1-блок",   q: "1-блокнинг электр таъминоти қандай тузилган?" },
+      emergency: { label: "🔧 Авария",   q: "Дўкон ўчиб қолса нима қилиш керак?" }
+    },
+    welcomeMsg: `**Салом!** Мен Абусахий СБ электр таъминоти бўйича АИ-ёрдамчиман.\n` +
+      `Мен барча дўконларнинг таъминот йўлларини биламан ва керакли линияни топишга ёрдам бераман.\n\n` +
+      `Сўров намуналари:\n` +
+      `- 47-дўкон таъминот йўли, 1-блок E қатор\n` +
+      `- ШР ва ВРУ нима?\n` +
+      `- ШО-E47 га қайси дўконлар уланган?`
   }
 };
 
@@ -1087,6 +1150,20 @@ function updateLanguage() {
 
   const aiSendBtnEl = document.getElementById("aiSendBtn");
   if (aiSendBtnEl && aiSendBtnEl.textContent !== '⏳') aiSendBtnEl.textContent = t.sendBtn;
+
+  const aiTitleEl = document.getElementById("aiTitle");
+  if (aiTitleEl) aiTitleEl.textContent = t.aiTitle;
+
+  const aiSubtitleEl = document.getElementById("aiSubtitle");
+  if (aiSubtitleEl) aiSubtitleEl.textContent = t.aiSubtitle;
+
+  document.querySelectorAll('.quick-btn[data-key]').forEach(btn => {
+    const action = t.quickActions[btn.dataset.key];
+    if (action) {
+      btn.textContent = action.label;
+      btn.dataset.q = action.q;
+    }
+  });
 
   // Обновляем текст toggle-кнопки в соответствии с текущим состоянием
   const container = document.querySelector(".container");
@@ -1337,11 +1414,11 @@ function performLocalSearch(question) {
   if (compactBlock) {
     targetBlocks.push(compactBlock);
   } else {
-    if (/1\s*[-–—]?\s*(го\s*)?блок|1\s*block/i.test(q)) targetBlocks.push('1-блок');
-    if (/2\s*[-–—]?\s*(го\s*)?блок|2\s*block/i.test(q)) targetBlocks.push('2-блок');
-    if (/3\s*[-–—]?\s*(го\s*)?блок|3\s*block/i.test(q)) targetBlocks.push('3-блок');
-    if (/гипермаркет|гипер/i.test(q))                    targetBlocks.push('Гипермаркет');
-    if (/специфич/i.test(q))                              targetBlocks.push('Специфические объекты');
+    if (/1\s*[-–—]?\s*(го\s*)?блок|1\s*block|1\s*blok/i.test(q)) targetBlocks.push('1-блок');
+    if (/2\s*[-–—]?\s*(го\s*)?блок|2\s*block|2\s*blok/i.test(q)) targetBlocks.push('2-блок');
+    if (/3\s*[-–—]?\s*(го\s*)?блок|3\s*block|3\s*blok/i.test(q)) targetBlocks.push('3-блок');
+    if (/гипермаркет|гипер|gipermarket|giper/i.test(q))          targetBlocks.push('Гипермаркет');
+    if (/специфич|o'?zига\s*xos|maxsus/i.test(q))                 targetBlocks.push('Специфические объекты');
     if (targetBlocks.length === 0) targetBlocks = Object.keys(DATA);
   }
 
@@ -1350,17 +1427,18 @@ function performLocalSearch(question) {
   let targetRow = compactRow || null;
 
   if (!targetRow) {
-    // Формат "ряд A 26", "ряда ж 88", "ряду E" — буква ПОСЛЕ слова "ряд"
-    const rowAfter = question.match(/[Рр]яд[а-яё]?\s+([A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё0-9]*)/);
+    // Формат "ряд A 26", "ряда ж 88", "ряду E", "qator E", "қатор E" — буква ПОСЛЕ слова "ряд"/"qator"/"қатор"
+    // Код ряда короткий (буква или буква+число, макс. 2 символа) — не захватываем случайное следующее слово
+    const rowAfter = question.match(/(?:[Рр]яд[а-яё]?|qator(?:da|ga|iga|dagi)?|[Ққ]атор(?:да|га|ига|даги)?)\s+([A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё0-9]?)(?![A-Za-zА-ЯЁа-яё0-9])/);
     if (rowAfter) {
       targetRow = normalizeId(rowAfter[1]).replace(/-/g, '').toUpperCase();
     }
   }
 
   if (!targetRow) {
-    // Формат "г ряд 26", "j ряд 5" — буква ПЕРЕД словом "ряд"
+    // Формат "г ряд 26", "j ряд 5", "E qator", "E қатор" — буква ПЕРЕД словом "ряд"/"qator"/"қатор"
     // Используем (?:^|[^...]) вместо \b, т.к. \b не работает с кириллицей
-    const rowBefore = question.match(/(?:^|[^A-Za-zА-ЯЁа-яё\d])([A-Za-zА-ЯЁа-яё])\s+[Рр]яд/i);
+    const rowBefore = question.match(/(?:^|[^A-Za-zА-ЯЁа-яё\d])([A-Za-zА-ЯЁа-яё])\s+(?:[Рр]яд|qator|[Ққ]атор)/i);
     if (rowBefore) {
       targetRow = normalizeId(rowBefore[1]).replace(/-/g, '').toUpperCase();
     }
@@ -1389,9 +1467,11 @@ function performLocalSearch(question) {
 
   // Строим поисковую фразу: убираем только блок/ряд/служебные слова
   // (\b не работает с кириллицей в JS-regex, поэтому фильтруем по словам, а не regex-заменой)
-  const STOP_WORDS = new Set(['где','откуда','что','такое','это','в','на','для','к','и','или']);
+  const STOP_WORDS = new Set(['где','откуда','что','такое','это','в','на','для','к','и','или','qayerda','qayerdan','nima','va','yoki','нима','ва','ёки']);
   // Основы слов — покрывают склонения/спряжения (магазина, ряду, питается, подключены, какие и т.д.)
-  const STOP_STEMS = ['найд','пут','блок','ряд','магазин','включ','отключ','пита','подключ','показ','как','котор'];
+  // + узбекские основы (лотин/кирилл): blok, qator, do'kon/дўкон, ulan (подключён), qaysi (какой), qanday (как), top (найти), ko'rsat (показать)
+  const STOP_STEMS = ['найд','пут','блок','ряд','магазин','включ','отключ','пита','подключ','показ','как','котор',
+    'blok','qator','қатор',"do'kon",'дўкон','ulan','улан','qaysi','қайси','qanday','қандай','top','кўрсат',"ko'rsat"];
   const isStopWord = w => STOP_WORDS.has(w) || STOP_STEMS.some(stem => w.startsWith(stem));
   const searchPhrase = q
     .replace(/\d+\s*[-–—]?\s*(го|й|ый|ой)?\s*(блок|block)/gi, '')
@@ -1536,7 +1616,7 @@ function renderPath(pathStr) {
 }
 
 function formatAIMessage(text) {
-  if (!text || typeof text !== 'string') return '<div class="ai-text">ИИ не смог ответить.</div>';
+  if (!text || typeof text !== 'string') return `<div class="ai-text">${translations[currentLang].noAnswer}</div>`;
   let html = '';
   const lines = text.split('\n');
   let inList = false;
@@ -1640,13 +1720,14 @@ async function sendToAI() {
     const data = await callAIAPI(question);
     hideTypingIndicator();
 
-    const reply = data.reply || 'ИИ не смог ответить.';
+    const t = translations[currentLang];
+    const reply = data.reply || t.noAnswer;
     let html = formatAIMessage(reply);
 
     // Показываем путь только если найден ровно один результат
     if (data.found && data.paths && data.paths.length === 1) {
       html += `<div style="margin-top:8px">${renderPath(data.paths[0].path)}</div>`;
-      html += `<div style="font-size:0.78rem;color:#475569;padding-left:4px">Магазины: ${data.paths[0].shops.join(', ')}</div>`;
+      html += `<div style="font-size:0.78rem;color:#475569;padding-left:4px">${t.shopsLabel}: ${data.paths[0].shops.join(', ')}</div>`;
       html += feedNoteForShops(data.paths[0].shops);
     }
 
@@ -1654,17 +1735,18 @@ async function sendToAI() {
 
   } catch (error) {
     hideTypingIndicator();
+    const t = translations[currentLang];
     const isNetworkError = error instanceof TypeError && error.message.includes('fetch');
     if (isNetworkError) {
-      addMessage(`❌ Сервер не запущен.<br><small>Дважды кликните <b>start.bat</b> для запуска.</small>`, false, true);
+      addMessage(`❌ ${t.serverDown}<br><small>${t.serverDownHint}</small>`, false, true);
     } else {
       // Server is running but AI failed — show local results if available
       const localResults = performLocalSearch(question);
       if (localResults.length > 0) {
         const lines = localResults.slice(0, 5).map(r =>
-          `• ${renderPath(r.path)} — магазины: ${r.shops.join(', ')}${feedNoteForShops(r.shops)}`
+          `• ${renderPath(r.path)} — ${t.shopsLabel.toLowerCase()}: ${r.shops.join(', ')}${feedNoteForShops(r.shops)}`
         ).join('');
-        addMessage(`⚠️ ИИ недоступен (${error.message})<br><br>Результаты из базы данных:<br>${lines}`, false, true);
+        addMessage(`⚠️ ${t.aiUnavailable} (${error.message})<br><br>${t.dbResults}:<br>${lines}`, false, true);
       } else {
         addMessage(`⚠️ ${error.message}`, false, true);
       }
@@ -1672,7 +1754,7 @@ async function sendToAI() {
     console.error('AI error:', error);
   } finally {
     aiSendBtn.disabled = false;
-    aiSendBtn.textContent = 'Отправить';
+    aiSendBtn.textContent = translations[currentLang].sendBtn;
   }
 }
 
@@ -1698,13 +1780,13 @@ async function callAIAPI(question) {
 
     if (!response.ok) {
       const err = await response.json().catch(() => ({}));
-      throw new Error(err.error || err.message || `Ошибка сервера: ${response.status}`);
+      throw new Error(err.error || err.message || `${translations[currentLang].serverError}: ${response.status}`);
     }
 
     return response.json();
   } catch (e) {
     clearTimeout(timeoutId);
-    if (e.name === 'AbortError') throw new Error('Таймаут запроса (30 сек)');
+    if (e.name === 'AbortError') throw new Error(translations[currentLang].timeout);
     throw e;
   }
 }
@@ -1726,13 +1808,6 @@ aiInput.addEventListener('keypress', e => {
 // ── Приветствие ───────────────────────────────────────────────────────────
 window.addEventListener('load', () => {
   setTimeout(() => {
-    addMessage(formatAIMessage(
-      `**Привет!** Я ИИ-помощник по электроснабжению ТЦ Abusaxiy.\n` +
-      `Я знаю все пути питания магазинов и помогу найти нужную линию.\n\n` +
-      `Примеры запросов:\n` +
-      `- Путь питания магазина 47, 1-блок ряд E\n` +
-      `- Что такое ЩР и ВРУ?\n` +
-      `- Какие магазины подключены к ШО-E47?`
-    ), false, true);
+    addMessage(formatAIMessage(translations[currentLang].welcomeMsg), false, true);
   }, 600);
 });

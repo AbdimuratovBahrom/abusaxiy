@@ -54,10 +54,10 @@
         <div class="ai-header">
           <div class="ai-title-row">
             <span class="ai-icon">🤖</span>
-            <h2>ИИ-Помощник</h2>
+            <h2 id="aiTitle">ИИ-Помощник</h2>
             <span class="ai-badge">AI</span>
           </div>
-          <p class="ai-subtitle">Задавайте вопросы на русском или узбекском языке</p>
+          <p class="ai-subtitle" id="aiSubtitle">Задавайте вопросы на русском или узбекском языке</p>
         </div>
 
         <div id="chatContainer" class="chat-container" aria-live="polite" aria-label="История чата" role="log">
@@ -66,9 +66,9 @@
 
         <!-- Быстрые вопросы -->
         <div class="quick-actions" id="quickActions">
-          <button class="quick-btn" data-q="Что такое ВРУ, ЩР, ЯРВ и ШО?">📖 Термины</button>
-          <button class="quick-btn" data-q="Как устроено электроснабжение 1-блока?">🏢 1-блок</button>
-          <button class="quick-btn" data-q="Что делать если отключился магазин?">🔧 Авария</button>
+          <button class="quick-btn" data-key="terms" data-q="Что такое ВРУ, ЩР, ЯРВ и ШО?">📖 Термины</button>
+          <button class="quick-btn" data-key="block1" data-q="Как устроено электроснабжение 1-блока?">🏢 1-блок</button>
+          <button class="quick-btn" data-key="emergency" data-q="Что делать если отключился магазин?">🔧 Авария</button>
         </div>
 
         <div class="chat-input-row">
