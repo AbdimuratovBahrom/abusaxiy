@@ -1030,120 +1030,54 @@ Object.values(DATA).forEach(blockData => {
   if (blockData.paths) ALL_PATHS.push(...blockData.paths);
 });
 
-const blockSelect   = document.getElementById("block");
-const rowSelect     = document.getElementById("row");
-const storeSelect   = document.getElementById("store");
-const result        = document.getElementById("pathResult");
-const toggleBtn     = document.getElementById("toggle-btn");
-const langSelect    = document.getElementById("languageSelect");
+const blockSelect      = document.getElementById("block");
+const rowSelect        = document.getElementById("row");
+const storeSelect      = document.getElementById("store");
+const result           = document.getElementById("pathResult");
+const themeToggle      = document.getElementById("themeToggle");
+const quickSearchInput = document.getElementById("quickSearchInput");
+const quickSuggestions = document.getElementById("quickSuggestions");
+const recentSearchesEl = document.getElementById("recentSearches");
+const stepBlockEl      = document.getElementById("stepBlock");
+const stepRowEl        = document.getElementById("stepRow");
+const stepStoreEl      = document.getElementById("stepStore");
 
-// Простейшая заглушка перевода
-const translations = {
-  ru: {
-    title: "Поиск линий электроснабжения магазинов",
-    selectBlock: "Выберите блок",
-    selectRow: "Выберите ряд",
-    selectStore: "Выберите магазин",
-    pathNotFound: "Путь не найден",
-    showBlocks: "Показать блоки",
-    hideBlocks: "Скрыть блоки",
-    inputPlaceholder: "Например: путь питания магазина 47, 1-блок ряд E",
-    sendBtn: "Отправить",
-    aiTitle: "ИИ-Помощник",
-    aiSubtitle: "Задавайте вопросы на русском или узбекском языке",
-    noAnswer: "ИИ не смог ответить.",
-    shopsLabel: "Магазины",
-    serverDown: "Сервер не запущен.",
-    serverDownHint: "Дважды кликните <b>start.bat</b> для запуска.",
-    aiUnavailable: "ИИ недоступен",
-    dbResults: "Результаты из базы данных",
-    timeout: "Таймаут запроса (30 сек)",
-    serverError: "Ошибка сервера",
-    quickActions: {
-      terms:     { label: "📖 Термины", q: "Что такое ВРУ, ЩР, ЯРВ и ШО?" },
-      block1:    { label: "🏢 1-блок",  q: "Как устроено электроснабжение 1-блока?" },
-      emergency: { label: "🔧 Авария",  q: "Что делать если отключился магазин?" }
-    },
-    welcomeMsg: `**Привет!** Я ИИ-помощник по электроснабжению ТЦ Abusaxiy.\n` +
-      `Я знаю все пути питания магазинов и помогу найти нужную линию.\n\n` +
-      `Примеры запросов:\n` +
-      `- Путь питания магазина 47, 1-блок ряд E\n` +
-      `- Что такое ЩР и ВРУ?\n` +
-      `- Какие магазины подключены к ШО-E47?`
-  },
-  uz: {
-    title: "Do'konlar elektr ta'minoti liniyalarini qidirish",
-    selectBlock: "Blokni tanlang",
-    selectRow: "Qatorni tanlang",
-    selectStore: "Do'konni tanlang",
-    pathNotFound: "Yo'l topilmadi",
-    showBlocks: "Bloklarni ko'rsatish",
-    hideBlocks: "Bloklarni yashirish",
-    inputPlaceholder: "Masalan: 47-do'kon, 1-blok E qator",
-    sendBtn: "Yuborish",
-    aiTitle: "AI-Yordamchi",
-    aiSubtitle: "Savollaringizni rus yoki o'zbek tilida bering",
-    noAnswer: "AI javob bera olmadi.",
-    shopsLabel: "Do'konlar",
-    serverDown: "Server ishga tushirilmagan.",
-    serverDownHint: "Ishga tushirish uchun <b>start.bat</b> ustiga ikki marta bosing.",
-    aiUnavailable: "AI mavjud emas",
-    dbResults: "Ma'lumotlar bazasidan natijalar",
-    timeout: "So'rov vaqti tugadi (30 soniya)",
-    serverError: "Server xatosi",
-    quickActions: {
-      terms:     { label: "📖 Atamalar", q: "VRU, SHR, YARV va SHO nima?" },
-      block1:    { label: "🏢 1-blok",   q: "1-blokning elektr ta'minoti qanday tuzilgan?" },
-      emergency: { label: "🔧 Avariya",  q: "Do'kon o'chib qolsa nima qilish kerak?" }
-    },
-    welcomeMsg: `**Salom!** Men Abusaxiy SB elektr ta'minoti bo'yicha AI-yordamchiman.\n` +
-      `Men barcha do'konlarning ta'minot yo'llarini bilaman va kerakli liniyani topishga yordam beraman.\n\n` +
-      `So'rov namunalari:\n` +
-      `- 47-do'kon ta'minot yo'li, 1-blok E qator\n` +
-      `- SHR va VRU nima?\n` +
-      `- ШО-E47 ga qaysi do'konlar ulangan?`
-  },
-  uz_cyrl: {
-    title: "Дўконлар электр таъминоти линияларини қидириш",
-    selectBlock: "Блокни танланг",
-    selectRow: "Қаторни танланг",
-    selectStore: "Дўконни танланг",
-    pathNotFound: "Йўл топилмади",
-    showBlocks: "Блокларни кўрсатиш",
-    hideBlocks: "Блокларни яшириш",
-    inputPlaceholder: "Масалан: 47-дўкон, 1-блок E қатор",
-    sendBtn: "Юбориш",
-    aiTitle: "АИ-Ёрдамчи",
-    aiSubtitle: "Саволларингизни рус ёки ўзбек тилида беринг",
-    noAnswer: "АИ жавоб бера олмади.",
-    shopsLabel: "Дўконлар",
-    serverDown: "Сервер ишга туширилмаган.",
-    serverDownHint: "Ишга тушириш учун <b>start.bat</b> устига икки марта босинг.",
-    aiUnavailable: "АИ мавжуд эмас",
-    dbResults: "Маълумотлар базасидан натижалар",
-    timeout: "Сўров вақти тугади (30 сония)",
-    serverError: "Сервер хатоси",
-    quickActions: {
-      terms:     { label: "📖 Атамалар", q: "ВРУ, ШР, ЯРВ ва ШО нима?" },
-      block1:    { label: "🏢 1-блок",   q: "1-блокнинг электр таъминоти қандай тузилган?" },
-      emergency: { label: "🔧 Авария",   q: "Дўкон ўчиб қолса нима қилиш керак?" }
-    },
-    welcomeMsg: `**Салом!** Мен Абусахий СБ электр таъминоти бўйича АИ-ёрдамчиман.\n` +
-      `Мен барча дўконларнинг таъминот йўлларини биламан ва керакли линияни топишга ёрдам бераман.\n\n` +
-      `Сўров намуналари:\n` +
-      `- 47-дўкон таъминот йўли, 1-блок E қатор\n` +
-      `- ШР ва ВРУ нима?\n` +
-      `- ШО-E47 га қайси дўконлар уланган?`
-  }
-};
-
-let currentLang = "ru";
+// ── Язык (переводы подключены из js/translations.js) ────────────────────────
+let currentLang = localStorage.getItem("abusaxiy_lang") || "ru";
 
 function updateLanguage() {
-  currentLang = langSelect.value;
   const t = translations[currentLang];
-  document.querySelector("h1").textContent = t.title;
   document.documentElement.lang = currentLang === 'ru' ? 'ru' : 'uz';
+
+  const headerTitleEl = document.getElementById("headerTitle");
+  if (headerTitleEl) headerTitleEl.textContent = t.appName;
+
+  const pageTitleEl = document.getElementById("pageTitle");
+  if (pageTitleEl) pageTitleEl.textContent = t.title;
+
+  const introLineEl = document.getElementById("introLine");
+  if (introLineEl) introLineEl.textContent = t.intro;
+
+  if (quickSearchInput) quickSearchInput.placeholder = t.quickSearchPlaceholder;
+
+  const stepBlockLabelEl = document.getElementById("stepBlockLabel");
+  if (stepBlockLabelEl) stepBlockLabelEl.textContent = t.stepBlockLabel;
+  const stepBlockHintEl = document.getElementById("stepBlockHint");
+  if (stepBlockHintEl) stepBlockHintEl.textContent = t.stepBlockHint;
+
+  const stepRowLabelEl = document.getElementById("stepRowLabel");
+  if (stepRowLabelEl) stepRowLabelEl.textContent = t.stepRowLabel;
+  const stepRowHintEl = document.getElementById("stepRowHint");
+  if (stepRowHintEl) stepRowHintEl.textContent = t.stepRowHint;
+
+  const stepStoreLabelEl = document.getElementById("stepStoreLabel");
+  if (stepStoreLabelEl) stepStoreLabelEl.textContent = t.stepStoreLabel;
+  const stepStoreHintEl = document.getElementById("stepStoreHint");
+  if (stepStoreHintEl) stepStoreHintEl.textContent = t.stepStoreHint;
+
+  if (blockSelect.options[0]) blockSelect.options[0].textContent = t.selectBlock;
+  if (rowSelect.options[0] && rowSelect.options[0].value === "") rowSelect.options[0].textContent = t.selectRow;
+  if (storeSelect.options[0] && storeSelect.options[0].value === "") storeSelect.options[0].textContent = t.selectStore;
 
   const aiInputEl = document.getElementById("aiInput");
   if (aiInputEl) aiInputEl.placeholder = t.inputPlaceholder;
@@ -1165,32 +1099,184 @@ function updateLanguage() {
     }
   });
 
-  // Обновляем текст toggle-кнопки в соответствии с текущим состоянием
-  const container = document.querySelector(".container");
-  if (container) {
-    toggleBtn.textContent = container.classList.contains("hidden-block") ? t.showBlocks : t.hideBlocks;
+  renderRecentSearches();
+}
+
+document.querySelectorAll('.ds-lang-btn[data-lang]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentLang = btn.dataset.lang;
+    localStorage.setItem("abusaxiy_lang", currentLang);
+    document.querySelectorAll('.ds-lang-btn[data-lang]').forEach(b => b.classList.toggle('active', b === btn));
+    updateLanguage();
+  });
+});
+document.querySelectorAll('.ds-lang-btn[data-lang]').forEach(b =>
+  b.classList.toggle('active', b.dataset.lang === currentLang)
+);
+
+// ── Тема (светлая/тёмная) ────────────────────────────────────────────────────
+function applyTheme(theme) {
+  if (theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  const isDark = theme
+    ? theme === 'dark'
+    : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (themeToggle) {
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+    themeToggle.setAttribute('aria-label', translations[currentLang][isDark ? 'themeToLight' : 'themeToDark']);
   }
 }
 
-langSelect.addEventListener("change", updateLanguage);
+const savedTheme = localStorage.getItem("abusaxiy_theme");
+applyTheme(savedTheme);
 
-// Скрыть/показать блоки
-toggleBtn.addEventListener("click", () => {
-  const container = document.querySelector(".container");
-  container.classList.toggle("hidden-block");
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+      || (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const next = isDark ? 'light' : 'dark';
+    localStorage.setItem("abusaxiy_theme", next);
+    applyTheme(next);
+  });
+}
+
+// ── Недавние запросы ─────────────────────────────────────────────────────────
+const RECENT_KEY = "abusaxiy_recent_searches";
+
+function getRecentSearches() {
+  try { return JSON.parse(localStorage.getItem(RECENT_KEY)) || []; }
+  catch { return []; }
+}
+
+function addRecentSearch(query) {
+  if (!query || !query.trim()) return;
+  const trimmed = query.trim();
+  let list = getRecentSearches().filter(q => q !== trimmed);
+  list.unshift(trimmed);
+  list = list.slice(0, 5);
+  localStorage.setItem(RECENT_KEY, JSON.stringify(list));
+  renderRecentSearches();
+}
+
+function renderRecentSearches() {
+  if (!recentSearchesEl) return;
+  const list = getRecentSearches();
+  recentSearchesEl.innerHTML = '';
+  list.forEach(q => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'ds-recent-chip';
+    chip.textContent = q;
+    chip.addEventListener('click', () => {
+      quickSearchInput.value = q;
+      runQuickSearch(q);
+    });
+    recentSearchesEl.appendChild(chip);
+  });
+}
+
+// ── Быстрый поиск (использует performLocalSearch, объявленную ниже) ─────────
+let quickSearchDebounce = null;
+
+function runQuickSearch(query) {
+  const q = query.trim();
+  if (!q) {
+    quickSuggestions.hidden = true;
+    quickSuggestions.innerHTML = '';
+    return;
+  }
+  const results = performLocalSearch(q).slice(0, 8);
+  quickSuggestions.innerHTML = '';
+  if (results.length === 0) {
+    quickSuggestions.hidden = false;
+    quickSuggestions.innerHTML = `<div class="ds-empty">
+      <span class="ds-empty-icon">🔍</span>${translations[currentLang].emptyTitle}
+    </div>`;
+    return;
+  }
   const t = translations[currentLang];
-  toggleBtn.textContent = container.classList.contains("hidden-block") ? t.showBlocks : t.hideBlocks;
-});
+  results.forEach(r => {
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'ds-suggestion-item';
+    item.innerHTML = `<span>${escapeHTML(r.path)}</span><span class="ds-suggestion-shops">${t.quickSearchShopsLabel}: ${r.shops.map(escapeHTML).join(', ')}</span>`;
+    item.addEventListener('click', () => {
+      quickSuggestions.hidden = true;
+      quickSearchInput.value = r.path;
+      addRecentSearch(q);
+      renderResultCard(r.path, r.shops);
+    });
+    quickSuggestions.appendChild(item);
+  });
+  quickSuggestions.hidden = false;
+}
+
+if (quickSearchInput) {
+  quickSearchInput.addEventListener('input', () => {
+    clearTimeout(quickSearchDebounce);
+    const value = quickSearchInput.value;
+    quickSearchDebounce = setTimeout(() => runQuickSearch(value), 250);
+  });
+  quickSearchInput.addEventListener('keypress', e => {
+    if (e.key === 'Enter') {
+      clearTimeout(quickSearchDebounce);
+      runQuickSearch(quickSearchInput.value);
+    }
+  });
+  document.addEventListener('click', e => {
+    if (!quickSearchInput.contains(e.target) && !quickSuggestions.contains(e.target)) {
+      quickSuggestions.hidden = true;
+    }
+  });
+}
+
+// ── Карточка результата (степпер + быстрый поиск) ────────────────────────────
+function renderResultCard(pathStr, shops) {
+  const t = translations[currentLang];
+  const shop = shops[shops.length - 1] || '';
+  const escapedPath = escapeHTML(pathStr);
+  result.innerHTML = `<div class="ds-result-card">
+    <div class="ds-result-shop">${t.resultShopPrefix} ${escapeHTML(shop)}</div>
+    ${renderPath(pathStr)}
+    ${feedNoteForShops(shops)}
+    <div class="ds-result-actions">
+      <button type="button" class="ds-btn" id="resultCopyBtn" data-path="${escapedPath}">📋 ${t.copyBtn}</button>
+      <button type="button" class="ds-btn ds-btn-accent" id="resultShareBtn" data-path="${escapedPath}">📤 ${t.shareBtn}</button>
+    </div>
+  </div>`;
+
+  const copyBtn = document.getElementById('resultCopyBtn');
+  if (copyBtn) copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(pathStr).then(() => {
+      copyBtn.textContent = `✓ ${t.copiedMsg}`;
+      setTimeout(() => { copyBtn.textContent = `📋 ${t.copyBtn}`; }, 2000);
+    });
+  });
+
+  const shareBtn = document.getElementById('resultShareBtn');
+  if (shareBtn) shareBtn.addEventListener('click', () => {
+    if (navigator.share) {
+      navigator.share({ text: pathStr }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(pathStr);
+    }
+  });
+}
 
 // Обработка изменения блока
 blockSelect.addEventListener("change", function() {
   const block = this.value;
+  const t = translations[currentLang];
 
   result.innerHTML = "";
-  rowSelect.innerHTML = `<option value="">Выберите ряд</option>`;
-  storeSelect.innerHTML = `<option value="">Выберите магазин</option>`;
+  rowSelect.innerHTML = `<option value="">${t.selectRow}</option>`;
+  storeSelect.innerHTML = `<option value="">${t.selectStore}</option>`;
   rowSelect.disabled = true;
   storeSelect.disabled = true;
+  updateStepperState();
 
   if (!block || !DATA[block]) return;
 
@@ -1212,7 +1298,7 @@ blockSelect.addEventListener("change", function() {
       return na !== nb ? na - nb : a.localeCompare(b, 'ru');
     });
 
-    storeSelect.innerHTML = '<option value="">Выберите магазин</option>';
+    storeSelect.innerHTML = `<option value="">${t.selectStore}</option>`;
     sortedShops.forEach(shop => {
       const opt = document.createElement('option');
       opt.value = shop;
@@ -1221,6 +1307,7 @@ blockSelect.addEventListener("change", function() {
     });
 
     storeSelect.disabled = sortedShops.length === 0;
+    updateStepperState();
     return;
   }
 
@@ -1243,7 +1330,22 @@ blockSelect.addEventListener("change", function() {
   });
 
   rowSelect.disabled = rows.size === 0;
+  updateStepperState();
 });
+
+// ── Состояние степпера (1 → 2 → 3) ───────────────────────────────────────────
+function updateStepperState() {
+  if (!stepBlockEl || !stepRowEl || !stepStoreEl) return;
+
+  stepBlockEl.classList.toggle('is-done', !!blockSelect.value);
+  stepBlockEl.classList.remove('is-disabled');
+
+  stepRowEl.classList.toggle('is-disabled', rowSelect.disabled);
+  stepRowEl.classList.toggle('is-done', !rowSelect.disabled && !!rowSelect.value);
+
+  stepStoreEl.classList.toggle('is-disabled', storeSelect.disabled);
+  stepStoreEl.classList.toggle('is-done', !storeSelect.disabled && !!storeSelect.value);
+}
 
 
 
@@ -1287,6 +1389,7 @@ rowSelect.addEventListener("change", function() {
   });
 
   storeSelect.disabled = sortedShops.length === 0;
+  updateStepperState();
 });
 
 // Вспомогательная функция для экранирования спецсимволов в regex
@@ -1302,6 +1405,7 @@ function escapeRegExp(string) {
 // Показ пути при выборе магазина — ТОЧНОЕ совпадение ряда
 storeSelect.addEventListener("change", function() {
     const shop = this.value?.trim();
+    updateStepperState();
     if (!shop) return;
 
     const block = blockSelect.value;
@@ -1317,20 +1421,26 @@ storeSelect.addEventListener("change", function() {
     // Для блоков с рядами — ТОЧНОЕ совпадение "Ряд X" (не частичное!)
     if (row && row !== "" && row !== "— без рядов —" &&
         !["Гипермаркет", "Специфические объекты"].includes(block)) {
-        
+
         // Используем регулярку для точного совпадения: "Ряд " + row + " " или ">"
         const rowRegex = new RegExp(`Ряд\\s+${escapeRegExp(row)}\\b`, 'i');
-        
+
         matches = matches.filter(item => rowRegex.test(item.path));
     }
 
+    const t = translations[currentLang];
+
     if (matches.length === 0) {
-        result.innerHTML = `<span style="color:#e53e3e;">${translations[currentLang].pathNotFound}</span>`;
+        result.innerHTML = `<div class="ds-empty">
+          <span class="ds-empty-icon">🙈</span>
+          <div>${t.emptyTitle}</div>
+          <div style="margin-top:4px">${t.emptyHint}</div>
+        </div>`;
         return;
     }
 
-    // Формируем вывод: путь + магазин в конце
-    const output = matches.map(item => {
+    // Формируем карточки: путь + магазин в конце
+    result.innerHTML = matches.map(item => {
         const matchingShop = item.shops.find(s => s.trim() === shop) || shop;
         let displayPath = item.path.trim();
 
@@ -1338,13 +1448,40 @@ storeSelect.addEventListener("change", function() {
             displayPath += ` > ${matchingShop}`;
         }
 
-        return `<strong>${displayPath}</strong>${feedNoteForShops([matchingShop])}`;
-    }).join("<br><br>");
+        const escapedPath = escapeHTML(displayPath);
+        return `<div class="ds-result-card">
+          <div class="ds-result-shop">${t.resultShopPrefix} ${escapeHTML(matchingShop)}</div>
+          ${renderPath(displayPath)}
+          ${feedNoteForShops([matchingShop])}
+          <div class="ds-result-actions">
+            <button type="button" class="ds-btn result-copy-btn" data-path="${escapedPath}">📋 ${t.copyBtn}</button>
+            <button type="button" class="ds-btn ds-btn-accent result-share-btn" data-path="${escapedPath}">📤 ${t.shareBtn}</button>
+          </div>
+        </div>`;
+    }).join("");
 
-    result.innerHTML = output;
+    result.querySelectorAll('.result-copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigator.clipboard.writeText(btn.dataset.path).then(() => {
+                const original = `📋 ${t.copyBtn}`;
+                btn.textContent = `✓ ${t.copiedMsg}`;
+                setTimeout(() => { btn.textContent = original; }, 2000);
+            });
+        });
+    });
+    result.querySelectorAll('.result-share-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({ text: btn.dataset.path }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(btn.dataset.path);
+            }
+        });
+    });
 });
 // Инициализация
 updateLanguage();
+updateStepperState();
 
 
 // === ИИ ЧАТ ===
