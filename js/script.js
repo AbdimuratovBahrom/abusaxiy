@@ -1848,6 +1848,12 @@ async function sendToAI() {
 
   addMessage(question, true);
   aiInput.value = '';
+
+  if (!navigator.onLine) {
+    addMessage(`⚠️ ${translations[currentLang].aiOffline}`, false, true);
+    return;
+  }
+
   aiSendBtn.disabled = true;
   aiSendBtn.textContent = '⏳';
 
