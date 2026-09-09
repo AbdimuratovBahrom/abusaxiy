@@ -7,87 +7,123 @@
   <meta name="theme-color" content="#1e40af"/>
   <title>Store Path Finder</title>
   <link rel="shortcut icon" href="./css/images/logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="./css/design-system.css"/>
   <link rel="stylesheet" href="./css/style.css"/>
 </head>
 <body>
-  <div class="header">
-    <div class="language-selector">
-      <select id="languageSelect">
-        <option value="ru">Русский</option>
-        <option value="uz">O'zbekcha (Lotin)</option>
-        <option value="uz_cyrl">Ўзбекча (Кирилл)</option>
-      </select>
+  <header class="ds-header">
+    <span class="ds-header-title" id="headerTitle">Abusaxiy</span>
+    <div class="ds-header-controls">
+      <div class="ds-lang-group" role="group" aria-label="Til / Язык">
+        <button type="button" class="ds-lang-btn active" data-lang="ru">RU</button>
+        <button type="button" class="ds-lang-btn" data-lang="uz_latn">O'z</button>
+        <button type="button" class="ds-lang-btn" data-lang="uz_cyrl">Ўз</button>
+      </div>
+      <button type="button" class="ds-theme-btn" id="themeToggle" aria-label="Переключить тему">🌙</button>
     </div>
-    <div class="toggle-btn">
-      <button id="toggle-btn" type="button">Скрыть блоки</button>
-    </div>
-  </div>
+  </header>
 
-  <div id="blocks-container">
-    <div class="container">
-      <h1>Поиск линий электроснабжения магазинов</h1>
+  <main class="ds-page">
+    <h1 class="sr-only" id="pageTitle">Поиск линий электроснабжения магазинов</h1>
+    <p class="ds-intro" id="introLine">Найдите линию питания любого магазина за 3 шага</p>
 
-      <label for="block" class="sr-only">Выберите блок</label>
-      <select id="block" aria-label="Выберите блок">
-        <option value="">Выберите блок</option>
-        <option value="1-блок">1-блок</option>
-        <option value="2-блок">2-блок</option>
-        <option value="3-блок">3-блок</option>
-        <option value="Гипермаркет">Гипермаркет</option>
-        <option value="Специфические объекты">Специфические объекты</option>
-      </select>
+    <!-- Быстрый поиск -->
+    <section class="ds-card">
+      <div class="ds-search-box">
+        <label for="quickSearchInput" class="sr-only">Быстрый поиск</label>
+        <input type="text" id="quickSearchInput" class="ds-search-input" autocomplete="off"
+          placeholder="Быстрый поиск: номер или название магазина"/>
+        <span class="ds-search-icon" aria-hidden="true">🔍</span>
+      </div>
+      <div id="quickSuggestions" class="ds-suggestions" hidden></div>
+      <div id="recentSearches" class="ds-recent"></div>
+    </section>
 
-      <label for="row" class="sr-only">Выберите ряд</label>
-      <select id="row" disabled aria-label="Выберите ряд">
-        <option value="">Выберите ряд</option>
-      </select>
-
-      <label for="store" class="sr-only">Выберите магазин</label>
-      <select id="store" disabled aria-label="Выберите магазин">
-        <option value="">Выберите магазин</option>
-      </select>
-
-      <div id="pathResult" aria-live="polite" aria-atomic="true"></div>
-
-      <!-- ИИ-помощник -->
-      <div class="ai-section">
-        <div class="ai-header">
-          <div class="ai-title-row">
-            <span class="ai-icon">🤖</span>
-            <h2 id="aiTitle">ИИ-Помощник</h2>
-            <span class="ai-badge">AI</span>
+    <!-- Пошаговый выбор -->
+    <section class="ds-card">
+      <div class="ds-stepper">
+        <div class="ds-step" id="stepBlock">
+          <div class="ds-step-num">1</div>
+          <div class="ds-step-body">
+            <div class="ds-step-label" id="stepBlockLabel">1. Блок</div>
+            <select id="block" class="ds-select" aria-label="Выберите блок">
+              <option value="">Выберите блок</option>
+              <option value="1-блок">1-блок</option>
+              <option value="2-блок">2-блок</option>
+              <option value="3-блок">3-блок</option>
+              <option value="Гипермаркет">Гипермаркет</option>
+              <option value="Специфические объекты">Специфические объекты</option>
+            </select>
+            <div class="ds-step-hint" id="stepBlockHint">Выберите блок торгового центра</div>
           </div>
-          <p class="ai-subtitle" id="aiSubtitle">Задавайте вопросы на русском или узбекском языке</p>
         </div>
 
-        <div id="chatContainer" class="chat-container" aria-live="polite" aria-label="История чата" role="log">
-          <!-- сообщения -->
+        <div class="ds-step is-disabled" id="stepRow">
+          <div class="ds-step-num">2</div>
+          <div class="ds-step-body">
+            <div class="ds-step-label" id="stepRowLabel">2. Ряд</div>
+            <select id="row" class="ds-select" disabled aria-label="Выберите ряд">
+              <option value="">Выберите ряд</option>
+            </select>
+            <div class="ds-step-hint" id="stepRowHint">Выберите ряд внутри блока</div>
+          </div>
         </div>
 
-        <!-- Быстрые вопросы -->
-        <div class="quick-actions" id="quickActions">
-          <button class="quick-btn" data-key="terms" data-q="Что такое ВРУ, ЩР, ЯРВ и ШО?">📖 Термины</button>
-          <button class="quick-btn" data-key="block1" data-q="Как устроено электроснабжение 1-блока?">🏢 1-блок</button>
-          <button class="quick-btn" data-key="emergency" data-q="Что делать если отключился магазин?">🔧 Авария</button>
-        </div>
-
-        <div class="chat-input-row">
-          <label for="aiInput" class="sr-only">Введите вопрос для ИИ-помощника</label>
-          <input type="text" id="aiInput"
-            placeholder="Например: путь питания магазина 47, 1-блок ряд E"
-            aria-label="Введите вопрос для ИИ-помощника"
-            autocomplete="off" />
-          <button id="aiSendBtn">Отправить</button>
+        <div class="ds-step is-disabled" id="stepStore">
+          <div class="ds-step-num">3</div>
+          <div class="ds-step-body">
+            <div class="ds-step-label" id="stepStoreLabel">3. Магазин</div>
+            <select id="store" class="ds-select" disabled aria-label="Выберите магазин">
+              <option value="">Выберите магазин</option>
+            </select>
+            <div class="ds-step-hint" id="stepStoreHint">Выберите магазин, чтобы увидеть линию питания</div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="case">
-        <a target="_blank" href="https://abdimuratovbahrom.github.io/Find-stores_by_ShR/">Блоки 1,2,3</a>
-        <a target="_blank" href="https://abdimuratovbahrom.github.io/gipermarket_stores/">Гипермаркет</a>
+    <!-- Результат -->
+    <div id="pathResult" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- ИИ-помощник -->
+    <div class="ai-section">
+      <div class="ai-header">
+        <div class="ai-title-row">
+          <span class="ai-icon">🤖</span>
+          <h2 id="aiTitle">ИИ-Помощник</h2>
+          <span class="ai-badge">AI</span>
+        </div>
+        <p class="ai-subtitle" id="aiSubtitle">Задавайте вопросы на русском или узбекском языке</p>
+      </div>
+
+      <div id="chatContainer" class="chat-container" aria-live="polite" aria-label="История чата" role="log">
+        <!-- сообщения -->
+      </div>
+
+      <!-- Быстрые вопросы -->
+      <div class="quick-actions" id="quickActions">
+        <button class="quick-btn" data-key="terms" data-q="Что такое ВРУ, ЩР, ЯРВ и ШО?">📖 Термины</button>
+        <button class="quick-btn" data-key="block1" data-q="Как устроено электроснабжение 1-блока?">🏢 1-блок</button>
+        <button class="quick-btn" data-key="emergency" data-q="Что делать если отключился магазин?">🔧 Авария</button>
+      </div>
+
+      <div class="chat-input-row">
+        <label for="aiInput" class="sr-only">Введите вопрос для ИИ-помощника</label>
+        <input type="text" id="aiInput"
+          placeholder="Например: путь питания магазина 47, 1-блок ряд E"
+          aria-label="Введите вопрос для ИИ-помощника"
+          autocomplete="off" />
+        <button id="aiSendBtn">Отправить</button>
       </div>
     </div>
-  </div>
 
+    <div class="case">
+      <a target="_blank" href="https://abdimuratovbahrom.github.io/Find-stores_by_ShR/">Блоки 1,2,3</a>
+      <a target="_blank" href="https://abdimuratovbahrom.github.io/gipermarket_stores/">Гипермаркет</a>
+    </div>
+  </main>
+
+  <script src="./js/translations.js"></script>
   <script src="./js/script.js" defer></script>
 </body>
 </html>
