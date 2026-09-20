@@ -1,0 +1,86 @@
+{
+  "stores": [
+    {
+      "id": "001",
+      "name": "Магазин №001",
+      "block": "A",
+      "row": "1",
+      "type": "store",
+      "lat": 41.29960,
+      "lng": 69.24015,
+      "description": "Одежда"
+    },
+    {
+      "id": "002",
+      "name": "Магазин №002",
+      "block": "A",
+      "row": "1",
+      "type": "store",
+      "lat": 41.29965,
+      "lng": 69.24025,
+      "description": "Обувь"
+    },
+    {
+      "id": "003",
+      "name": "Магазин №003",
+      "block": "A",
+      "row": "2",
+      "type": "store",
+      "lat": 41.29955,
+      "lng": 69.24035,
+      "description": "Электроника"
+    },
+    {
+      "id": "004",
+      "name": "Магазин №004",
+      "block": "B",
+      "row": "1",
+      "type": "store",
+      "lat": 41.29945,
+      "lng": 69.24005,
+      "description": "Детские товары"
+    },
+    {
+      "id": "005",
+      "name": "Кафе «Далгакыран»",
+      "block": "B",
+      "row": "2",
+      "type": "food",
+      "lat": 41.29935,
+      "lng": 69.24045,
+      "description": "Фастфуд"
+    }
+  ],
+  "specialObjects": [
+    {
+      "id": "main_entrance",
+      "name": "Главный вход",
+      "type": "entrance",
+      "lat": 41.29920,
+      "lng": 69.24010
+    },
+    {
+      "id": "toilet_a1",
+      "name": "Туалет (Блок A)",
+      "type": "toilet",
+      "lat": 41.29970,
+      "lng": 69.24010
+    },
+    {
+      "id": "atm_1",
+      "name": "Банкомат",
+      "type": "atm",
+      "lat": 41.29950,
+      "lng": 69.24020
+    },
+    {
+      "id": "exit_1",
+      "name": "Запасной выход",
+      "type": "exit",
+      "lat": 41.29910,
+      "lng": 69.24060
+    }
+  ],
+  "mapCenter": { "lat": 41.2995, "lng": 69.2401 },
+  "defaultZoom": 18
+}
