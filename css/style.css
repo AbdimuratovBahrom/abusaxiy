@@ -16,7 +16,7 @@ body {
   display: inline-block;
   min-height: var(--tap-min);
   line-height: calc(var(--tap-min) - 4px);
-  margin: 0 6px;
+  margin: 6px 6px;
   padding: 0 18px;
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-sm);

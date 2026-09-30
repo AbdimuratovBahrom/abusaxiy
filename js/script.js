@@ -1093,6 +1093,9 @@ function updateLanguage() {
   const aiSubtitleEl = document.getElementById("aiSubtitle");
   if (aiSubtitleEl) aiSubtitleEl.textContent = t.aiSubtitle;
 
+  const postsBtnEl = document.getElementById("postsBtn");
+  if (postsBtnEl) postsBtnEl.textContent = t.postsBtn;
+
   document.querySelectorAll('.quick-btn[data-key]').forEach(btn => {
     const action = t.quickActions[btn.dataset.key];
     if (action) {

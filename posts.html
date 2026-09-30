@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Посты охраны и позывные раций ТЦ Abusaxiy"/>
+  <meta name="theme-color" content="#1e40af"/>
+  <title>Посты и позывные — Abusaxiy</title>
+  <link rel="shortcut icon" href="./css/images/logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="./css/design-system.css"/>
+  <link rel="stylesheet" href="./css/style.css"/>
+  <link rel="stylesheet" href="./css/posts.css"/>
+</head>
+<body>
+  <header class="ds-header">
+    <span class="ds-header-title" id="headerTitle">Abusaxiy</span>
+    <div class="ds-header-controls">
+      <div class="ds-lang-group" role="group" aria-label="Til / Язык">
+        <button type="button" class="ds-lang-btn active" data-lang="ru">RU</button>
+        <button type="button" class="ds-lang-btn" data-lang="uz_latn">O'z</button>
+        <button type="button" class="ds-lang-btn" data-lang="uz_cyrl">Ўз</button>
+      </div>
+      <button type="button" class="ds-theme-btn" id="themeToggle" aria-label="Переключить тему">🌙</button>
+    </div>
+  </header>
+
+  <main class="ds-page posts-page">
+    <a href="./index.html" class="posts-back" id="postsBackLink">← Назад</a>
+    <h1 class="posts-title" id="postsTitle">Посты охраны и позывные раций</h1>
+    <p class="posts-total" id="postsTotalLine">Всего постов: 60</p>
+
+    <section class="ds-card posts-search-card">
+      <div class="ds-search-box">
+        <label for="postsSearchInput" class="sr-only">Поиск</label>
+        <input type="text" id="postsSearchInput" class="ds-search-input" autocomplete="off"
+          placeholder="Поиск: позывной или пост"/>
+        <span class="ds-search-icon" aria-hidden="true">🔍</span>
+      </div>
+      <div class="posts-chips" id="postsChips"></div>
+    </section>
+
+    <div id="postsList"></div>
+  </main>
+
+  <script src="./js/translations.js"></script>
+  <script src="./js/posts-data.js"></script>
+  <script src="./js/posts.js"></script>
+</body>
+</html>

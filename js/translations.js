@@ -42,6 +42,19 @@ const translations = {
     themeToLight: "Переключить на светлую тему",
     themeToDark: "Переключить на тёмную тему",
 
+    postsBtn: "Посты и позывные",
+    postsTitle: "Посты охраны и позывные раций",
+    postsTotal: "Всего постов",
+    postsSearch: "Поиск: позывной или пост",
+    postsAll: "Все",
+    postsCallsign: "Позывной",
+    postsPost: "Пост",
+    postsLocation: "📍 Локация",
+    postsNoLocation: "Локация не указана",
+    postsNoName: "Название не указано",
+    postsNotFound: "Ничего не найдено",
+    postsBack: "← Назад",
+
     quickActions: {
       terms:     { label: "📖 Термины", q: "Что такое ВРУ, ЩР, ЯРВ и ШО?" },
       block1:    { label: "🏢 1-блок",  q: "Как устроено электроснабжение 1-блока?" },
@@ -96,6 +109,19 @@ const translations = {
     themeToLight: "Yorug' mavzuga o'tish",
     themeToDark: "Qorong'i mavzuga o'tish",
 
+    postsBtn: "Postlar va pozivnoylar",
+    postsTitle: "Qo'riqlash postlari va ratsiya pozivnoylari",
+    postsTotal: "Jami postlar",
+    postsSearch: "Qidiruv: pozivnoy yoki post",
+    postsAll: "Hammasi",
+    postsCallsign: "Pozivnoy",
+    postsPost: "Post",
+    postsLocation: "📍 Lokatsiya",
+    postsNoLocation: "Lokatsiya ko'rsatilmagan",
+    postsNoName: "Nomi ko'rsatilmagan",
+    postsNotFound: "Hech narsa topilmadi",
+    postsBack: "← Orqaga",
+
     quickActions: {
       terms:     { label: "📖 Atamalar", q: "VRU, SHR, YARV va SHO nima?" },
       block1:    { label: "🏢 1-blok",   q: "1-blokning elektr ta'minoti qanday tuzilgan?" },
@@ -149,6 +175,19 @@ const translations = {
     emptyHint: "Дўкон рақамини текширинг ёки блок ва қаторни қўлда танлаб кўринг",
     themeToLight: "Ёруғ мавзуга ўтиш",
     themeToDark: "Қоронғи мавзуга ўтиш",
+
+    postsBtn: "Постлар ва позивнойлар",
+    postsTitle: "Қўриқлаш постлари ва рация позивнойлари",
+    postsTotal: "Жами постлар",
+    postsSearch: "Қидирув: позивной ёки пост",
+    postsAll: "Ҳаммаси",
+    postsCallsign: "Позивной",
+    postsPost: "Пост",
+    postsLocation: "📍 Локация",
+    postsNoLocation: "Локация кўрсатилмаган",
+    postsNoName: "Номи кўрсатилмаган",
+    postsNotFound: "Ҳеч нарса топилмади",
+    postsBack: "← Орқага",
 
     quickActions: {
       terms:     { label: "📖 Атамалар", q: "ВРУ, ШР, ЯРВ ва ШО нима?" },
