@@ -3,6 +3,106 @@
 window.POSTS_DATA = {
   "sections": [
     {
+      "id": "management",
+      "title": {
+        "ru": "Руководство",
+        "uz_latn": "Rahbariyat",
+        "uz_cyrl": "Раҳбарият"
+      },
+      "posts": [
+        {
+          "n": null,
+          "callsign": { "ru": "О-1", "uz_latn": "O-1", "uz_cyrl": "О-1" },
+          "post": {
+            "ru": "Генеральный директор",
+            "uz_latn": "Bosh direktor",
+            "uz_cyrl": "Бош директор"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "О-2", "uz_latn": "O-2", "uz_cyrl": "О-2" },
+          "post": {
+            "ru": "Зам. генерального директора — Боҳодир ака",
+            "uz_latn": "Bosh direktor o'rinbosari — Bohodir aka",
+            "uz_cyrl": "Бош директор ўринбосари — Боҳодир ака"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "О-2", "uz_latn": "O-2", "uz_cyrl": "О-2" },
+          "post": {
+            "ru": "Зам. генерального директора — Азляров",
+            "uz_latn": "Bosh direktor o'rinbosari — Azlyarov",
+            "uz_cyrl": "Бош директор ўринбосари — Азляров"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "О-3", "uz_latn": "O-3", "uz_cyrl": "О-3" },
+          "post": {
+            "ru": "Начальник охраны — Одил Ирисбаев",
+            "uz_latn": "Oxrana boshlig'i — Odil Irisbayev",
+            "uz_cyrl": "Охрана бошлиғи — Одил Ирисбаев"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "О-4", "uz_latn": "O-4", "uz_cyrl": "О-4" },
+          "post": {
+            "ru": "Помощник начальника охраны — Шерзод",
+            "uz_latn": "Oxrana boshlig'i yordamchisi — Sherzod",
+            "uz_cyrl": "Охрана бошлиғи ёрдамчиси — Шерзод"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "О-5", "uz_latn": "O-5", "uz_cyrl": "О-5" },
+          "post": {
+            "ru": "Начальник пожарной безопасности — Боҳодир ака",
+            "uz_latn": "Yong'in xavfsizligi boshlig'i — Bohodir aka",
+            "uz_cyrl": "Ёнғин хавфсизлиги бошлиғи — Боҳодир ака"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "О-6", "uz_latn": "O-6", "uz_cyrl": "О-6" },
+          "post": {
+            "ru": "Хамидула",
+            "uz_latn": "Xamidula",
+            "uz_cyrl": "Хамидула"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "010", "uz_latn": "010", "uz_cyrl": "010" },
+          "post": {
+            "ru": "Старший смены (охрана)",
+            "uz_latn": "Smena starshisi (oxrana)",
+            "uz_cyrl": "Смена старшиси (охрана)"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "26", "uz_latn": "26", "uz_cyrl": "26" },
+          "post": {
+            "ru": "Сотрудник службы режима",
+            "uz_latn": "Rejim xizmati xodimi",
+            "uz_cyrl": "Режим хизмати ходими"
+          },
+          "map": null
+        }
+      ]
+    },
+    {
       "id": "block1",
       "title": {
         "ru": "Блок 1",
@@ -149,6 +249,16 @@ window.POSTS_DATA = {
             "uz_cyrl": "Пост ипподром кириши (Q-35 маг.)"
           },
           "map": "https://maps.app.goo.gl/KuFjEwqcduV1cAvX8"
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "231", "uz_latn": "231", "uz_cyrl": "231" },
+          "post": {
+            "ru": "Сотрудник пожарной безопасности 1-блок",
+            "uz_latn": "1-blok yong'in xavfsizligi xodimi",
+            "uz_cyrl": "1-блок ёнғин хавфсизлиги ходими"
+          },
+          "map": null
         }
       ]
     },
@@ -271,6 +381,16 @@ window.POSTS_DATA = {
             "uz_cyrl": "Пост 1-ли арка"
           },
           "map": "https://maps.app.goo.gl/2TVervDK5HPjPgPG6"
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "232", "uz_latn": "232", "uz_cyrl": "232" },
+          "post": {
+            "ru": "Сотрудник пожарной безопасности 2-блок",
+            "uz_latn": "2-blok yong'in xavfsizligi xodimi",
+            "uz_cyrl": "2-блок ёнғин хавфсизлиги ходими"
+          },
+          "map": null
         }
       ]
     },
@@ -561,6 +681,16 @@ window.POSTS_DATA = {
             "uz_cyrl": "Пост 38, қурилиш кириши"
           },
           "map": "https://maps.app.goo.gl/GHmhn4hdaCJUkHky6"
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "233", "uz_latn": "233", "uz_cyrl": "233" },
+          "post": {
+            "ru": "Сотрудник пожарной безопасности 3-блок",
+            "uz_latn": "3-blok yong'in xavfsizligi xodimi",
+            "uz_cyrl": "3-блок ёнғин хавфсизлиги ходими"
+          },
+          "map": null
         }
       ]
     },
@@ -711,6 +841,16 @@ window.POSTS_DATA = {
             "uz_cyrl": "5 блок"
           },
           "map": "https://maps.app.goo.gl/MayHQ9pDWdcXN4p86"
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "235", "uz_latn": "235", "uz_cyrl": "235" },
+          "post": {
+            "ru": "Сотрудник пожарной безопасности 5-блок",
+            "uz_latn": "5-blok yong'in xavfsizligi xodimi",
+            "uz_cyrl": "5-блок ёнғин хавфсизлиги ходими"
+          },
+          "map": null
         }
       ]
     },
@@ -887,6 +1027,46 @@ window.POSTS_DATA = {
             "ru": "Чина базар",
             "uz_latn": "China bozor",
             "uz_cyrl": "Чина бозор"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "234", "uz_latn": "234", "uz_cyrl": "234" },
+          "post": {
+            "ru": "Сотрудник пожарной безопасности 4-блок (Чинабозор)",
+            "uz_latn": "4-blok (Chinabozor) yong'in xavfsizligi xodimi",
+            "uz_cyrl": "4-блок (Чинабозор) ёнғин хавфсизлиги ходими"
+          },
+          "map": null
+        }
+      ]
+    },
+    {
+      "id": "titanik",
+      "title": {
+        "ru": "6 блок (Титаник)",
+        "uz_latn": "6 blok (Titanik)",
+        "uz_cyrl": "6 блок (Титаник)"
+      },
+      "posts": [
+        {
+          "n": 61,
+          "callsign": { "ru": "Марказ4", "uz_latn": "Markaz4", "uz_cyrl": "Марказ4" },
+          "post": {
+            "ru": "6 блок (Титаник)",
+            "uz_latn": "6 blok (Titanik)",
+            "uz_cyrl": "6 блок (Титаник)"
+          },
+          "map": null
+        },
+        {
+          "n": null,
+          "callsign": { "ru": "236", "uz_latn": "236", "uz_cyrl": "236" },
+          "post": {
+            "ru": "Сотрудник пожарной безопасности 6-блок (Титаник)",
+            "uz_latn": "6-blok (Titanik) yong'in xavfsizligi xodimi",
+            "uz_cyrl": "6-блок (Титаник) ёнғин хавфсизлиги ходими"
           },
           "map": null
         }
