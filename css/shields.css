@@ -1,0 +1,123 @@
+/* ── Страница «Фото щитов» ─────────────────────────────────────────────── */
+.shields-back {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.shields-back:hover { text-decoration: underline; }
+
+.shields-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin: 0 0 4px;
+}
+
+.shields-intro {
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  margin: 0 0 16px;
+}
+
+.shields-filters-card { padding-bottom: 14px; }
+
+.shields-selects {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.shields-selects .ds-select { flex: 1; min-width: 140px; }
+
+.shields-chips {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.shields-chip {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  color: var(--color-text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+.shields-chip.active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+.shields-chip:hover:not(.active) { border-color: var(--color-primary-light); }
+
+.shields-total {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin: 12px 0 0;
+}
+
+.shields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.shields-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color var(--transition-fast);
+}
+.shields-card:hover { border-color: var(--color-primary); }
+
+.shields-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--color-surface-alt);
+  display: block;
+}
+
+.shields-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px 10px;
+}
+
+.shields-card-type {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--color-primary);
+}
+
+.shields-card-meta {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.shields-card-label {
+  font-size: 0.82rem;
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 640px) {
+  .shields-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 960px) {
+  .shields-grid { grid-template-columns: repeat(4, 1fr); }
+}

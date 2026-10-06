@@ -1096,6 +1096,9 @@ function updateLanguage() {
   const postsBtnEl = document.getElementById("postsBtn");
   if (postsBtnEl) postsBtnEl.textContent = t.postsBtn;
 
+  const shieldsBtnEl = document.getElementById("shieldsBtn");
+  if (shieldsBtnEl) shieldsBtnEl.textContent = t.shieldsBtn;
+
   document.querySelectorAll('.quick-btn[data-key]').forEach(btn => {
     const action = t.quickActions[btn.dataset.key];
     if (action) {
