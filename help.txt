@@ -24,11 +24,6 @@ git push origin main
 
 
 
-git add .
-
-git commit -m "add up grade"
-
-git pull origin main
 
 
 
